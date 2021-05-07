@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4d4c01f41ed54dc48054e242f9b93760" Name="Diagram1">
+        <EntityTypeShape EntityType="PRUEVAMVMModel.Ciudad" Width="1.5" PointX="5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEVAMVMModel.Comunicacion" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEVAMVMModel.Contacto" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEVAMVMModel.Departamento" Width="1.5" PointX="2.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEVAMVMModel.Estado" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEVAMVMModel.Rol" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEVAMVMModel.TipoCorrespondencia" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEVAMVMModel.Usuario" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="PRUEVAMVMModel.FK_Ciudad_Departamento" ManuallyRouted="false" />
+        <AssociationConnector Association="PRUEVAMVMModel.FK_Comunicacion_ContactoDestinatario" ManuallyRouted="false" />
+        <AssociationConnector Association="PRUEVAMVMModel.FK_Comunicacion_ContactoRemitente" ManuallyRouted="false" />
+        <AssociationConnector Association="PRUEVAMVMModel.FK_Comunicacion_Estado" ManuallyRouted="false" />
+        <AssociationConnector Association="PRUEVAMVMModel.FK_Comunicacion_TipoCorrespondencia" ManuallyRouted="false" />
+        <AssociationConnector Association="PRUEVAMVMModel.FK_Usuario_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="PRUEVAMVMModel.FK_Comunicacion_UsuarioCreacion" />
+        <AssociationConnector Association="PRUEVAMVMModel.FK_Comunicacion_UsuarioModificacion" />
+        <AssociationConnector Association="PRUEVAMVMModel.FK_Contacto_ContactoModificacion" />
+        <AssociationConnector Association="PRUEVAMVMModel.FK_Contacto_UsuarioCreacion" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
