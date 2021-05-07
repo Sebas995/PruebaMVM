@@ -26,12 +26,9 @@ namespace PruebaMVM.DTO
         }
     
         public virtual DbSet<Ciudad> Ciudads { get; set; }
-        public virtual DbSet<Comunicacion> Comunicacions { get; set; }
-        public virtual DbSet<Contacto> Contactoes { get; set; }
         public virtual DbSet<Departamento> Departamentoes { get; set; }
         public virtual DbSet<Estado> Estadoes { get; set; }
         public virtual DbSet<Rol> Rols { get; set; }
         public virtual DbSet<TipoCorrespondencia> TipoCorrespondencias { get; set; }
-        public virtual DbSet<Usuario> Usuarios { get; set; }
     }
 }

@@ -14,17 +14,8 @@ namespace PruebaMVM.DTO
     
     public partial class Rol
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Rol()
-        {
-            this.Usuarios = new HashSet<Usuario>();
-        }
-    
         public int RolId { get; set; }
         public string Nombre { get; set; }
         public Nullable<bool> Activo { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }

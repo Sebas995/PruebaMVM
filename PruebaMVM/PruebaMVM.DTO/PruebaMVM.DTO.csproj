@@ -56,20 +56,22 @@
     <Compile Include="Ciudad.cs">
       <DependentUpon>PruebaMVM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Comunicacion.cs">
-      <DependentUpon>PruebaMVM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Comunicacion\ComunicacionReq.cs" />
-    <Compile Include="Comunicacion\ComunicacionRes.cs" />
-    <Compile Include="Contacto.cs">
-      <DependentUpon>PruebaMVM.tt</DependentUpon>
-    </Compile>
+    <Compile Include="CiudadDTO\CiudadReq.cs" />
+    <Compile Include="CiudadDTO\CiudadRes.cs" />
+    <Compile Include="ComunicacionDTO\ComunicacionReq.cs" />
+    <Compile Include="ComunicacionDTO\ComunicacionRes.cs" />
+    <Compile Include="ContactoDTO\ContactoRes.cs" />
+    <Compile Include="ContactoDTO\ContactoReq.cs" />
     <Compile Include="Departamento.cs">
       <DependentUpon>PruebaMVM.tt</DependentUpon>
     </Compile>
+    <Compile Include="DepartamentoDTO\DepartamentoReq.cs" />
+    <Compile Include="DepartamentoDTO\DepartamentoRes.cs" />
     <Compile Include="Estado.cs">
       <DependentUpon>PruebaMVM.tt</DependentUpon>
     </Compile>
+    <Compile Include="EstadoDTO\EstadoReq.cs" />
+    <Compile Include="EstadoDTO\EstadoRes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PruebaMVM.Context.cs">
       <AutoGen>True</AutoGen>
@@ -90,30 +92,34 @@
     <Compile Include="Rol.cs">
       <DependentUpon>PruebaMVM.tt</DependentUpon>
     </Compile>
+    <Compile Include="RolDTO\RolReq.cs" />
+    <Compile Include="RolDTO\RolRes.cs" />
     <Compile Include="TipoCorrespondencia.cs">
       <DependentUpon>PruebaMVM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.cs">
-      <DependentUpon>PruebaMVM.tt</DependentUpon>
-    </Compile>
+    <Compile Include="TipoCorrespondenciaDTO\TipoCorrespondenciaReq.cs" />
+    <Compile Include="TipoCorrespondenciaDTO\TipoCorrespondenciaRes.cs" />
+    <Compile Include="UsuarioDTO\UsuarioReq.cs" />
+    <Compile Include="UsuarioDTO\UsuarioRes.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <EntityDeploy Include="PruebaMVM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>PruebaMVM.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
     <None Include="PruebaMVM.edmx.diagram">
       <DependentUpon>PruebaMVM.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="PruebaMVM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PruebaMVM.Context.cs</LastGenOutput>
       <DependentUpon>PruebaMVM.edmx</DependentUpon>
+      <LastGenOutput>PruebaMVM.Context.cs</LastGenOutput>
     </Content>
     <Content Include="PruebaMVM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -121,8 +127,6 @@
       <LastGenOutput>PruebaMVM.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

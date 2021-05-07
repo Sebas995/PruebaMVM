@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\juanmartinez\Desktop\New folder\PruebaMVM\PruebaMVM.DTO\PruebaMVM.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\juanmartinez\Desktop\Prueba\PruebaMVM\PruebaMVM.DTO\PruebaMVM.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

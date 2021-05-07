@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="PRUEVAMVMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PRUEVAMVMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ciudad">
           <Key>
             <PropertyRef Name="CiudadId" />
@@ -14,41 +14,11 @@
           <Property Name="DepartamentoId" Type="int" />
           <Property Name="Activo" Type="bit" />
         </EntityType>
-        <EntityType Name="Comunicacion">
-          <Key>
-            <PropertyRef Name="ComunicacionId" />
-          </Key>
-          <Property Name="ComunicacionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TipoCorrespondencia" Type="int" />
-          <Property Name="NumeroRadicado" Type="varchar" MaxLength="10" />
-          <Property Name="Estado" Type="int" />
-          <Property Name="ContactoDestinatario" Type="int" />
-          <Property Name="ContactoRemitente" Type="int" />
-          <Property Name="UsuarioCreacion" Type="int" />
-          <Property Name="FechaCreacion" Type="date" />
-          <Property Name="UsuarioModificacion" Type="int" />
-          <Property Name="FechaModificacion" Type="date" />
-          <Property Name="Eliminado" Type="bit" />
-        </EntityType>
-        <EntityType Name="Contacto">
-          <Key>
-            <PropertyRef Name="ContactoId" />
-          </Key>
-          <Property Name="ContactoId" Type="int" Nullable="false" />
-          <Property Name="Nombres" Type="varchar" MaxLength="200" />
-          <Property Name="Apellidos" Type="nchar" MaxLength="10" />
-          <Property Name="CiudadId" Type="int" />
-          <Property Name="UsuarioCreacion" Type="int" />
-          <Property Name="FechaCreacion" Type="date" />
-          <Property Name="UsuarioModificacion" Type="int" />
-          <Property Name="FechaModificacion" Type="date" />
-          <Property Name="Activo" Type="bit" />
-        </EntityType>
         <EntityType Name="Departamento">
           <Key>
             <PropertyRef Name="DepartamentoId" />
           </Key>
-          <Property Name="DepartamentoId" Type="int" Nullable="false" />
+          <Property Name="DepartamentoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="200" />
           <Property Name="Activo" Type="bit" />
         </EntityType>
@@ -77,19 +47,6 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="200" />
           <Property Name="Activo" Type="bit" />
         </EntityType>
-        <EntityType Name="Usuario">
-          <Key>
-            <PropertyRef Name="UsuarioId" />
-          </Key>
-          <Property Name="UsuarioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombres" Type="varchar" MaxLength="200" />
-          <Property Name="Apellidos" Type="varchar" MaxLength="200" />
-          <Property Name="Correo" Type="varchar" MaxLength="200" />
-          <Property Name="Contrasena" Type="varchar" MaxLength="150" />
-          <Property Name="RolId" Type="int" />
-          <Property Name="TelefonoContacto" Type="int" />
-          <Property Name="Activo" Type="bit" />
-        </EntityType>
         <Association Name="FK_Ciudad_Departamento">
           <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
           <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="0..1" />
@@ -102,101 +59,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Comunicacion_Estado">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
-          <End Role="Comunicacion" Type="Self.Comunicacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estado">
-              <PropertyRef Name="EstadoId" />
-            </Principal>
-            <Dependent Role="Comunicacion">
-              <PropertyRef Name="Estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Comunicacion_TipoCorrespondencia">
-          <End Role="TipoCorrespondencia" Type="Self.TipoCorrespondencia" Multiplicity="0..1" />
-          <End Role="Comunicacion" Type="Self.Comunicacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoCorrespondencia">
-              <PropertyRef Name="TipoCorrespondenciaId" />
-            </Principal>
-            <Dependent Role="Comunicacion">
-              <PropertyRef Name="TipoCorrespondencia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contacto_ContactoModificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
-          <End Role="Contacto" Type="Self.Contacto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="UsuarioId" />
-            </Principal>
-            <Dependent Role="Contacto">
-              <PropertyRef Name="UsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contacto_UsuarioCreacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
-          <End Role="Contacto" Type="Self.Contacto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="UsuarioId" />
-            </Principal>
-            <Dependent Role="Contacto">
-              <PropertyRef Name="UsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Usuario_Rol">
-          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rol">
-              <PropertyRef Name="RolId" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="RolId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="PRUEVAMVMModelStoreContainer">
           <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Comunicacion" EntityType="Self.Comunicacion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Contacto" EntityType="Self.Contacto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoCorrespondencia" EntityType="Self.TipoCorrespondencia" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Ciudad_Departamento" Association="Self.FK_Ciudad_Departamento">
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Ciudad" EntitySet="Ciudad" />
           </AssociationSet>
-          <AssociationSet Name="FK_Comunicacion_Estado" Association="Self.FK_Comunicacion_Estado">
-            <End Role="Estado" EntitySet="Estado" />
-            <End Role="Comunicacion" EntitySet="Comunicacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comunicacion_TipoCorrespondencia" Association="Self.FK_Comunicacion_TipoCorrespondencia">
-            <End Role="TipoCorrespondencia" EntitySet="TipoCorrespondencia" />
-            <End Role="Comunicacion" EntitySet="Comunicacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contacto_ContactoModificacion" Association="Self.FK_Contacto_ContactoModificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Contacto" EntitySet="Contacto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contacto_UsuarioCreacion" Association="Self.FK_Contacto_UsuarioCreacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Contacto" EntitySet="Contacto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
-            <End Role="Rol" EntitySet="Rol" />
-            <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PRUEVAMVMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -210,51 +85,11 @@
           <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="Departamento" Relationship="Self.FK_Ciudad_Departamento" FromRole="Ciudad" ToRole="Departamento" />
         </EntityType>
-        <EntityType Name="Comunicacion">
-          <Key>
-            <PropertyRef Name="ComunicacionId" />
-          </Key>
-          <Property Name="ComunicacionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TipoCorrespondencia" Type="Int32" />
-          <Property Name="NumeroRadicado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="Int32" />
-          <Property Name="ContactoDestinatario" Type="Int32" />
-          <Property Name="ContactoRemitente" Type="Int32" />
-          <Property Name="UsuarioCreacion" Type="Int32" />
-          <Property Name="FechaCreacion" Type="DateTime" Precision="0" />
-          <Property Name="UsuarioModificacion" Type="Int32" />
-          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
-          <Property Name="Eliminado" Type="Boolean" />
-          <NavigationProperty Name="Contacto" Relationship="Self.FK_Comunicacion_ContactoDestinatario" FromRole="Comunicacion" ToRole="Contacto" />
-          <NavigationProperty Name="Contacto1" Relationship="Self.FK_Comunicacion_ContactoRemitente" FromRole="Comunicacion" ToRole="Contacto" />
-          <NavigationProperty Name="Estado1" Relationship="Self.FK_Comunicacion_Estado" FromRole="Comunicacion" ToRole="Estado" />
-          <NavigationProperty Name="TipoCorrespondencia1" Relationship="Self.FK_Comunicacion_TipoCorrespondencia" FromRole="Comunicacion" ToRole="TipoCorrespondencia" />
-          <NavigationProperty Name="Usuario" Relationship="PRUEVAMVMModel.FK_Comunicacion_UsuarioCreacion" FromRole="Comunicacion" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="PRUEVAMVMModel.FK_Comunicacion_UsuarioModificacion" FromRole="Comunicacion" ToRole="Usuario" />
-        </EntityType>
-        <EntityType Name="Contacto">
-          <Key>
-            <PropertyRef Name="ContactoId" />
-          </Key>
-          <Property Name="ContactoId" Type="Int32" Nullable="false" />
-          <Property Name="Nombres" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Apellidos" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="CiudadId" Type="Int32" />
-          <Property Name="Activo" Type="Boolean" />
-          <NavigationProperty Name="Comunicacions" Relationship="Self.FK_Comunicacion_ContactoDestinatario" FromRole="Contacto" ToRole="Comunicacion" />
-          <NavigationProperty Name="Comunicacions1" Relationship="Self.FK_Comunicacion_ContactoRemitente" FromRole="Contacto" ToRole="Comunicacion" />
-          <Property Name="UsuarioCreacion" Type="Int32" />
-          <Property Name="FechaCreacion" Type="DateTime" Precision="0" />
-          <Property Name="UsuarioModificacion" Type="Int32" />
-          <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Usuario" Relationship="PRUEVAMVMModel.FK_Contacto_ContactoModificacion" FromRole="Contacto" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="PRUEVAMVMModel.FK_Contacto_UsuarioCreacion" FromRole="Contacto" ToRole="Usuario" />
-        </EntityType>
         <EntityType Name="Departamento">
           <Key>
             <PropertyRef Name="DepartamentoId" />
           </Key>
-          <Property Name="DepartamentoId" Type="Int32" Nullable="false" />
+          <Property Name="DepartamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="Ciudad" Relationship="Self.FK_Ciudad_Departamento" FromRole="Departamento" ToRole="Ciudad" />
@@ -266,7 +101,6 @@
           <Property Name="EstadoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
-          <NavigationProperty Name="Comunicacions" Relationship="Self.FK_Comunicacion_Estado" FromRole="Estado" ToRole="Comunicacion" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -275,7 +109,6 @@
           <Property Name="RolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuario_Rol" FromRole="Rol" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="TipoCorrespondencia">
           <Key>
@@ -285,25 +118,6 @@
           <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
-          <NavigationProperty Name="Comunicacions" Relationship="Self.FK_Comunicacion_TipoCorrespondencia" FromRole="TipoCorrespondencia" ToRole="Comunicacion" />
-        </EntityType>
-        <EntityType Name="Usuario">
-          <Key>
-            <PropertyRef Name="UsuarioId" />
-          </Key>
-          <Property Name="UsuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombres" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Apellidos" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Correo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Contrasena" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="RolId" Type="Int32" />
-          <Property Name="TelefonoContacto" Type="Int32" />
-          <Property Name="Activo" Type="Boolean" />
-          <NavigationProperty Name="Rol" Relationship="Self.FK_Usuario_Rol" FromRole="Usuario" ToRole="Rol" />
-          <NavigationProperty Name="Comunicacions" Relationship="PRUEVAMVMModel.FK_Comunicacion_UsuarioCreacion" FromRole="Usuario" ToRole="Comunicacion" />
-          <NavigationProperty Name="Comunicacions1" Relationship="PRUEVAMVMModel.FK_Comunicacion_UsuarioModificacion" FromRole="Usuario" ToRole="Comunicacion" />
-          <NavigationProperty Name="Contactoes" Relationship="PRUEVAMVMModel.FK_Contacto_ContactoModificacion" FromRole="Usuario" ToRole="Contacto" />
-          <NavigationProperty Name="Contactoes1" Relationship="PRUEVAMVMModel.FK_Contacto_UsuarioCreacion" FromRole="Usuario" ToRole="Contacto" />
         </EntityType>
         <Association Name="FK_Ciudad_Departamento">
           <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
@@ -317,164 +131,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Comunicacion_ContactoDestinatario">
-          <End Role="Contacto" Type="Self.Contacto" Multiplicity="0..1" />
-          <End Role="Comunicacion" Type="Self.Comunicacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contacto">
-              <PropertyRef Name="ContactoId" />
-            </Principal>
-            <Dependent Role="Comunicacion">
-              <PropertyRef Name="ContactoDestinatario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Comunicacion_ContactoRemitente">
-          <End Role="Contacto" Type="Self.Contacto" Multiplicity="0..1" />
-          <End Role="Comunicacion" Type="Self.Comunicacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contacto">
-              <PropertyRef Name="ContactoId" />
-            </Principal>
-            <Dependent Role="Comunicacion">
-              <PropertyRef Name="ContactoRemitente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Comunicacion_Estado">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
-          <End Role="Comunicacion" Type="Self.Comunicacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estado">
-              <PropertyRef Name="EstadoId" />
-            </Principal>
-            <Dependent Role="Comunicacion">
-              <PropertyRef Name="Estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Comunicacion_TipoCorrespondencia">
-          <End Role="TipoCorrespondencia" Type="Self.TipoCorrespondencia" Multiplicity="0..1" />
-          <End Role="Comunicacion" Type="Self.Comunicacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoCorrespondencia">
-              <PropertyRef Name="TipoCorrespondenciaId" />
-            </Principal>
-            <Dependent Role="Comunicacion">
-              <PropertyRef Name="TipoCorrespondencia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Usuario_Rol">
-          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rol">
-              <PropertyRef Name="RolId" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="RolId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Ciudads" EntityType="Self.Ciudad" />
-          <EntitySet Name="Comunicacions" EntityType="Self.Comunicacion" />
-          <EntitySet Name="Contactoes" EntityType="Self.Contacto" />
           <EntitySet Name="Departamentoes" EntityType="Self.Departamento" />
           <EntitySet Name="Estadoes" EntityType="Self.Estado" />
           <EntitySet Name="Rols" EntityType="Self.Rol" />
           <EntitySet Name="TipoCorrespondencias" EntityType="Self.TipoCorrespondencia" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_Ciudad_Departamento" Association="Self.FK_Ciudad_Departamento">
             <End Role="Departamento" EntitySet="Departamentoes" />
             <End Role="Ciudad" EntitySet="Ciudads" />
           </AssociationSet>
-          <AssociationSet Name="FK_Comunicacion_ContactoDestinatario" Association="Self.FK_Comunicacion_ContactoDestinatario">
-            <End Role="Contacto" EntitySet="Contactoes" />
-            <End Role="Comunicacion" EntitySet="Comunicacions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comunicacion_ContactoRemitente" Association="Self.FK_Comunicacion_ContactoRemitente">
-            <End Role="Contacto" EntitySet="Contactoes" />
-            <End Role="Comunicacion" EntitySet="Comunicacions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comunicacion_Estado" Association="Self.FK_Comunicacion_Estado">
-            <End Role="Estado" EntitySet="Estadoes" />
-            <End Role="Comunicacion" EntitySet="Comunicacions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comunicacion_TipoCorrespondencia" Association="Self.FK_Comunicacion_TipoCorrespondencia">
-            <End Role="TipoCorrespondencia" EntitySet="TipoCorrespondencias" />
-            <End Role="Comunicacion" EntitySet="Comunicacions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
-            <End Role="Rol" EntitySet="Rols" />
-            <End Role="Usuario" EntitySet="Usuarios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comunicacion_UsuarioCreacion" Association="PRUEVAMVMModel.FK_Comunicacion_UsuarioCreacion">
-            <End Role="Usuario" EntitySet="Usuarios" />
-            <End Role="Comunicacion" EntitySet="Comunicacions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comunicacion_UsuarioModificacion" Association="PRUEVAMVMModel.FK_Comunicacion_UsuarioModificacion">
-            <End Role="Usuario" EntitySet="Usuarios" />
-            <End Role="Comunicacion" EntitySet="Comunicacions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contacto_ContactoModificacion" Association="PRUEVAMVMModel.FK_Contacto_ContactoModificacion">
-            <End Role="Usuario" EntitySet="Usuarios" />
-            <End Role="Contacto" EntitySet="Contactoes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contacto_UsuarioCreacion" Association="PRUEVAMVMModel.FK_Contacto_UsuarioCreacion">
-            <End Role="Usuario" EntitySet="Usuarios" />
-            <End Role="Contacto" EntitySet="Contactoes" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_Comunicacion_UsuarioCreacion">
-          <End Type="PRUEVAMVMModel.Usuario" Role="Usuario" Multiplicity="0..1" />
-          <End Type="PRUEVAMVMModel.Comunicacion" Role="Comunicacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="UsuarioId" />
-            </Principal>
-            <Dependent Role="Comunicacion">
-              <PropertyRef Name="UsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Comunicacion_UsuarioModificacion">
-          <End Type="PRUEVAMVMModel.Usuario" Role="Usuario" Multiplicity="0..1" />
-          <End Type="PRUEVAMVMModel.Comunicacion" Role="Comunicacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="UsuarioId" />
-            </Principal>
-            <Dependent Role="Comunicacion">
-              <PropertyRef Name="UsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contacto_ContactoModificacion">
-          <End Type="PRUEVAMVMModel.Usuario" Role="Usuario" Multiplicity="0..1" />
-          <End Type="PRUEVAMVMModel.Contacto" Role="Contacto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="UsuarioId" />
-            </Principal>
-            <Dependent Role="Contacto">
-              <PropertyRef Name="UsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contacto_UsuarioCreacion">
-          <End Type="PRUEVAMVMModel.Usuario" Role="Usuario" Multiplicity="0..1" />
-          <End Type="PRUEVAMVMModel.Contacto" Role="Contacto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="UsuarioId" />
-            </Principal>
-            <Dependent Role="Contacto">
-              <PropertyRef Name="UsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -487,38 +154,6 @@
                 <ScalarProperty Name="CiudadId" ColumnName="CiudadId" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Comunicacions">
-            <EntityTypeMapping TypeName="PRUEVAMVMModel.Comunicacion">
-              <MappingFragment StoreEntitySet="Comunicacion">
-                <ScalarProperty Name="ComunicacionId" ColumnName="ComunicacionId" />
-                <ScalarProperty Name="TipoCorrespondencia" ColumnName="TipoCorrespondencia" />
-                <ScalarProperty Name="NumeroRadicado" ColumnName="NumeroRadicado" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="ContactoDestinatario" ColumnName="ContactoDestinatario" />
-                <ScalarProperty Name="ContactoRemitente" ColumnName="ContactoRemitente" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
-                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Contactoes">
-            <EntityTypeMapping TypeName="PRUEVAMVMModel.Contacto">
-              <MappingFragment StoreEntitySet="Contacto">
-                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-                <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="ContactoId" ColumnName="ContactoId" />
-                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
-                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
-                <ScalarProperty Name="CiudadId" ColumnName="CiudadId" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -560,20 +195,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="PRUEVAMVMModel.Usuario">
-              <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
-                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
-                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
-                <ScalarProperty Name="RolId" ColumnName="RolId" />
-                <ScalarProperty Name="TelefonoContacto" ColumnName="TelefonoContacto" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -589,7 +210,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

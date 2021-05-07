@@ -47,7 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Ciudad\CiudadBLL.cs" />
+    <Compile Include="Comunicacion\ComunicacionBLL.cs" />
+    <Compile Include="Contacto\ContactoDAL.cs" />
+    <Compile Include="Departamento\DepartamentoDAL.cs" />
+    <Compile Include="Estado\EstadoDAL.cs" />
     <Compile Include="Helper\Mensaje.cs" />
     <Compile Include="Helper\MensajeUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,6 +60,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Mensajes.resx</DependentUpon>
     </Compile>
+    <Compile Include="Rol\RolDAL.cs" />
+    <Compile Include="TipoCorrespondencia\TipoCorrespondenciaDAL.cs" />
+    <Compile Include="Usuario\UsuarioDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Mensajes.resx">
@@ -67,10 +74,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PruebaMVM.DAL\PruebaMVM.DAL.csproj">
+      <Project>{53d94ce1-fae5-49ec-89ac-11814faa4ae5}</Project>
+      <Name>PruebaMVM.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PruebaMVM.DTO\PruebaMVM.DTO.csproj">
+      <Project>{8252402c-b488-4bad-a01b-93d0f23f5461}</Project>
+      <Name>PruebaMVM.DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PruebaMVM.Utilities\PruebaMVM.Utilities.csproj">
       <Project>{6e791ebe-674a-4e00-a893-e7c92b8dea18}</Project>
       <Name>PruebaMVM.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

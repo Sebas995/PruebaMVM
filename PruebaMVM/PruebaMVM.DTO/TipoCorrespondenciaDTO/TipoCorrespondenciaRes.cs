@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebaMVM.DTO.Comunicacion
+namespace PruebaMVM.DTO.TipoCorrespondenciaDTO
 {
-    public class ComunicacionReq
+    public class TipoCorrespondenciaRes
     {
     }
 }

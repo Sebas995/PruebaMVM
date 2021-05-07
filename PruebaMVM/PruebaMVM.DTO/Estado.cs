@@ -14,17 +14,8 @@ namespace PruebaMVM.DTO
     
     public partial class Estado
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Estado()
-        {
-            this.Comunicacions = new HashSet<Comunicacion>();
-        }
-    
         public int EstadoId { get; set; }
         public string Nombre { get; set; }
         public Nullable<bool> Activo { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comunicacion> Comunicacions { get; set; }
     }
 }
