@@ -87,5 +87,107 @@ namespace PruebaMVM.BLL
 
             return comunicaciones;
         }
+
+        /// <summary>
+        /// Guarda las Comunicaciones
+        /// </summary>
+        /// <param name="comunicacionReq">Datos de la comunicacion</param>
+        /// <returns>Datos de la comunicacion</returns>
+        public ComunicacionRes GuardarComunicacion(ComunicacionReq comunicacionReq)
+        {
+            ComunicacionRes comunicacion = new ComunicacionRes();
+            try
+            {
+                comunicacion = comunicacionDAL.GuardarComunicacion(comunicacionReq);
+            }
+            catch (DataException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_DATABASE.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (ArgumentException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_ARGUMENT.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (NullReferenceException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_NULLREFERENCE.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (TimeoutException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_TIMEOUT.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (Exception exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_EXCEPTION.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+
+            return comunicacion;
+        }
+
+        /// <summary>
+        /// Editar las comunicaciones
+        /// </summary>
+        /// <param name="comunicacionReq"></param>
+        /// <returns></returns>
+        public void EditarComunicacion(ComunicacionReq comunicacionReq)
+        {
+
+            try
+            {
+                comunicacionDAL.EditarComunicacion(comunicacionReq);
+            }
+            catch (DataException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_DATABASE.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (ArgumentException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_ARGUMENT.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (NullReferenceException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_NULLREFERENCE.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (TimeoutException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_TIMEOUT.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (Exception exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_EXCEPTION.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+        }
+
+        /// <summary>
+        /// Eliminar las comunicaciones
+        /// </summary>
+        /// <param name="comunicacionReq">Datos de la comunicacion</param>
+        public void EliminarComunicacion(ComunicacionReq comunicacionReq)
+        {
+            try
+            {
+                comunicacionDAL.EliminarComunicacion(comunicacionReq);
+            }
+            catch (DataException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_DATABASE.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (ArgumentException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_ARGUMENT.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (NullReferenceException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_NULLREFERENCE.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (TimeoutException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_TIMEOUT.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (Exception exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_EXCEPTION.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+        }
     }
 }

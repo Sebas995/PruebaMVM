@@ -1,7 +1,6 @@
 ﻿using Prueba.BLL.Helper;
-using PruebaMVM.DAL.CiudadDAL;
+using PruebaMVM.DAL.RolDAL;
 using PruebaMVM.DTO;
-using PruebaMVM.DTO.CiudadDTO;
 using PruebaMVM.Utilities.Logs;
 using System;
 using System.Collections.Generic;
@@ -10,25 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebaMVM.BLL.CiudadBLL
+namespace PruebaMVM.BLL.RolBLL
 {
     /// <summary>
-    /// Crud de ciudades
+    /// Crud de roles
     /// </summary>
-    public class CiudadBLL
+    public class RolBLL
     {
-        CiudadDAL ciudadDAL = new CiudadDAL();
+        RolDAL rolDAL = new RolDAL();
 
         /// <summary>
-        /// Obtiene las ciudades
+        /// Obtiene las lista de roles
         /// </summary>
-        /// <returns>Ciudades</returns>
-        public List<CiudadRes> ObtenerCiudades()
+        /// <returns></returns>
+        public List<Rol> ObtenerRoles()
         {
-            List<CiudadRes> ciudades = new List<CiudadRes>();
+            List<Rol> roles = new List<Rol>();
             try
             {
-                ciudades = ciudadDAL.ObtenerCiudades();
+                roles = rolDAL.ObtenerRoles();
             }
             catch (DataException exc)
             {
@@ -51,7 +50,8 @@ namespace PruebaMVM.BLL.CiudadBLL
                 throw new MVMException(EnumMensajes.ERROR_EXCEPTION.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
             }
 
-            return ciudades;
+            return roles;
         }
+
     }
 }

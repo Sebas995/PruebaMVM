@@ -53,18 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ciudad.cs">
-      <DependentUpon>PruebaMVM.tt</DependentUpon>
-    </Compile>
     <Compile Include="CiudadDTO\CiudadReq.cs" />
     <Compile Include="CiudadDTO\CiudadRes.cs" />
     <Compile Include="ComunicacionDTO\ComunicacionReq.cs" />
     <Compile Include="ComunicacionDTO\ComunicacionRes.cs" />
     <Compile Include="ContactoDTO\ContactoRes.cs" />
     <Compile Include="ContactoDTO\ContactoReq.cs" />
-    <Compile Include="Departamento.cs">
-      <DependentUpon>PruebaMVM.tt</DependentUpon>
-    </Compile>
     <Compile Include="DepartamentoDTO\DepartamentoReq.cs" />
     <Compile Include="DepartamentoDTO\DepartamentoRes.cs" />
     <Compile Include="Estado.cs">
@@ -127,6 +121,5 @@
       <LastGenOutput>PruebaMVM.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

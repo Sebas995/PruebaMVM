@@ -1,34 +1,33 @@
-﻿using Prueba.BLL.Helper;
-using PruebaMVM.DAL.CiudadDAL;
-using PruebaMVM.DTO;
-using PruebaMVM.DTO.CiudadDTO;
-using PruebaMVM.Utilities.Logs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Prueba.BLL.Helper;
+using PruebaMVM.DAL.EstadoDAL;
+using PruebaMVM.DTO;
+using PruebaMVM.Utilities.Logs;
 
-namespace PruebaMVM.BLL.CiudadBLL
+namespace PruebaMVM.BLL.EstadoBLL
 {
     /// <summary>
-    /// Crud de ciudades
+    /// Crud de Estados
     /// </summary>
-    public class CiudadBLL
+    public class EstadoBLL
     {
-        CiudadDAL ciudadDAL = new CiudadDAL();
+        EstadoDAL estadoDAL = new EstadoDAL();
 
         /// <summary>
-        /// Obtiene las ciudades
+        /// Obtiene los estados
         /// </summary>
-        /// <returns>Ciudades</returns>
-        public List<CiudadRes> ObtenerCiudades()
+        /// <returns>Estados</returns>
+        public List<Estado> ObtenerEstados()
         {
-            List<CiudadRes> ciudades = new List<CiudadRes>();
+            List<Estado> estados = new List<Estado>();
             try
             {
-                ciudades = ciudadDAL.ObtenerCiudades();
+                estados = estadoDAL.ObtenerEstados();
             }
             catch (DataException exc)
             {
@@ -51,7 +50,7 @@ namespace PruebaMVM.BLL.CiudadBLL
                 throw new MVMException(EnumMensajes.ERROR_EXCEPTION.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
             }
 
-            return ciudades;
+            return estados;
         }
     }
 }

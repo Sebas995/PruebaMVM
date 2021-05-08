@@ -8,5 +8,9 @@ namespace PruebaMVM.DTO.CiudadDTO
 {
     public class CiudadRes
     {
+        public int CiudadId { get; set; }
+        public string Nombre { get; set; }
+        public int DepartamentoId { get; set; }
+        public bool Activo { get; set; }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebaMVM.BLL.Rol
+namespace PruebaMVM.BLL.Contacto
 {
-    public class RolDAL
+    public class ContactoBLL
     {
     }
 }

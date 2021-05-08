@@ -9,7 +9,7 @@ namespace PruebaMVM.DTO.ComunicacionDTO
     public class ComunicacionRes
     {
         public int ComunicacionId { get; set; }
-        public string TipoCorrespondencia { get; set; }
+        public int TipoCorrespondencia { get; set; }
         public string NumeroRadicado { get; set; }
         public string Estado { get; set; }
         public string ContactoDestinatario { get; set; }

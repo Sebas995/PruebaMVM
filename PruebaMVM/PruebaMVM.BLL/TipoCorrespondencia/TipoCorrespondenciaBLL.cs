@@ -1,7 +1,6 @@
 ﻿using Prueba.BLL.Helper;
-using PruebaMVM.DAL.CiudadDAL;
+using PruebaMVM.DAL.TipoCorrespondenciaDAL;
 using PruebaMVM.DTO;
-using PruebaMVM.DTO.CiudadDTO;
 using PruebaMVM.Utilities.Logs;
 using System;
 using System.Collections.Generic;
@@ -10,25 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebaMVM.BLL.CiudadBLL
+namespace PruebaMVM.BLL.TipoCorrespondenciaBLL
 {
     /// <summary>
-    /// Crud de ciudades
+    /// Crud de tipos correspondencia
     /// </summary>
-    public class CiudadBLL
+    public class TipoCorrespondenciaBLL
     {
-        CiudadDAL ciudadDAL = new CiudadDAL();
+        TipoCorrespondenciaDAL tipoCorrespondenciaBLL = new TipoCorrespondenciaDAL();
 
         /// <summary>
-        /// Obtiene las ciudades
+        /// Obtiene los Tipo de correspondencia
         /// </summary>
-        /// <returns>Ciudades</returns>
-        public List<CiudadRes> ObtenerCiudades()
+        /// <returns>TipoCorrespondencia</returns>
+        public List<TipoCorrespondencia> ObtenerTipoCorrespondencia()
         {
-            List<CiudadRes> ciudades = new List<CiudadRes>();
+            List<TipoCorrespondencia> comunicacion = new List<TipoCorrespondencia>();
             try
             {
-                ciudades = ciudadDAL.ObtenerCiudades();
+                comunicacion = tipoCorrespondenciaBLL.ObtenerTipoCorrespondencia();
             }
             catch (DataException exc)
             {
@@ -51,7 +50,7 @@ namespace PruebaMVM.BLL.CiudadBLL
                 throw new MVMException(EnumMensajes.ERROR_EXCEPTION.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
             }
 
-            return ciudades;
+            return comunicacion;
         }
     }
 }

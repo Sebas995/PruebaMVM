@@ -25,8 +25,6 @@ namespace PruebaMVM.DTO
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Ciudad> Ciudads { get; set; }
-        public virtual DbSet<Departamento> Departamentoes { get; set; }
         public virtual DbSet<Estado> Estadoes { get; set; }
         public virtual DbSet<Rol> Rols { get; set; }
         public virtual DbSet<TipoCorrespondencia> TipoCorrespondencias { get; set; }

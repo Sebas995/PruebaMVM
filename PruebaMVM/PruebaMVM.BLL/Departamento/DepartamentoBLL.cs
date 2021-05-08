@@ -1,7 +1,6 @@
 ﻿using Prueba.BLL.Helper;
-using PruebaMVM.DAL.CiudadDAL;
-using PruebaMVM.DTO;
-using PruebaMVM.DTO.CiudadDTO;
+using PruebaMVM.DAL.DepartamentoDAL;
+using PruebaMVM.DTO.DepartamentoDTO;
 using PruebaMVM.Utilities.Logs;
 using System;
 using System.Collections.Generic;
@@ -10,25 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebaMVM.BLL.CiudadBLL
+namespace PruebaMVM.BLL.DepartamentoBLL
 {
     /// <summary>
-    /// Crud de ciudades
+    /// Crud de departamentos
     /// </summary>
-    public class CiudadBLL
+    public class DepartamentoBLL
     {
-        CiudadDAL ciudadDAL = new CiudadDAL();
+        private DepartamentoDAL departamentoDAL = new DepartamentoDAL();
 
         /// <summary>
-        /// Obtiene las ciudades
+        /// Obtiene los departamentos
         /// </summary>
-        /// <returns>Ciudades</returns>
-        public List<CiudadRes> ObtenerCiudades()
+        /// <returns></returns>
+        public List<DepartamentoRes> ObtenerDepartamentos()
         {
-            List<CiudadRes> ciudades = new List<CiudadRes>();
+            List<DepartamentoRes> departamentos = new List<DepartamentoRes>();
             try
             {
-                ciudades = ciudadDAL.ObtenerCiudades();
+                departamentos = departamentoDAL.ObtenerDepartamentos();
             }
             catch (DataException exc)
             {
@@ -51,7 +50,8 @@ namespace PruebaMVM.BLL.CiudadBLL
                 throw new MVMException(EnumMensajes.ERROR_EXCEPTION.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
             }
 
-            return ciudades;
+            return departamentos;
         }
+
     }
 }

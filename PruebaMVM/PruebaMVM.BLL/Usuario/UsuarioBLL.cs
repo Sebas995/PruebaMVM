@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebaMVM.BLL.TipoCorrespondencia
+namespace PruebaMVM.BLL.Usuario
 {
-    public class TipoCorrespondenciaDAL
+    public class UsuarioBLL
     {
     }
 }

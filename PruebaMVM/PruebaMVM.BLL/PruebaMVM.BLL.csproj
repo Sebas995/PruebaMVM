@@ -49,9 +49,9 @@
   <ItemGroup>
     <Compile Include="Ciudad\CiudadBLL.cs" />
     <Compile Include="Comunicacion\ComunicacionBLL.cs" />
-    <Compile Include="Contacto\ContactoDAL.cs" />
-    <Compile Include="Departamento\DepartamentoDAL.cs" />
-    <Compile Include="Estado\EstadoDAL.cs" />
+    <Compile Include="Contacto\ContactoBLL.cs" />
+    <Compile Include="Departamento\DepartamentoBLL.cs" />
+    <Compile Include="Estado\EstadoBLL.cs" />
     <Compile Include="Helper\Mensaje.cs" />
     <Compile Include="Helper\MensajeUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,9 +60,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Mensajes.resx</DependentUpon>
     </Compile>
-    <Compile Include="Rol\RolDAL.cs" />
-    <Compile Include="TipoCorrespondencia\TipoCorrespondenciaDAL.cs" />
-    <Compile Include="Usuario\UsuarioDAL.cs" />
+    <Compile Include="Rol\RolBLL.cs" />
+    <Compile Include="TipoCorrespondencia\TipoCorrespondenciaBLL.cs" />
+    <Compile Include="Usuario\UsuarioBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Mensajes.resx">
