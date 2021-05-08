@@ -1,5 +1,6 @@
 ﻿using Prueba.BLL.Helper;
 using PruebaMVM.BLL.DepartamentoBLL;
+using PruebaMVM.DTO.DepartamentoDTO;
 using PruebaMVM.DTO.Response;
 using PruebaMVM.Utilities.Logs;
 using System;
@@ -13,7 +14,7 @@ namespace PruebaMVM.Controllers
 {
 
     /// <summary>
-    /// Crud de departamentos
+    /// CRUD de departamentos
     /// </summary>
     public class DepartamentoController : ApiController
     {
@@ -22,17 +23,17 @@ namespace PruebaMVM.Controllers
         /// <summary>
         /// Obtiene los departamentos
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Departamentos</returns>
         [HttpGet]
         [Route("Api/ObtenerDepartamentos")]
-        public ResponseModel ObtenerDepartamentos()
+        public ResponseModel ObtenerDepartamentos(DepartamentoReq departamentoReq)
         {
             ResponseModel responseModel = new ResponseModel();
             try
             {
                 responseModel.Message = "Datos Encontrados";
                 responseModel.Response = true;
-                responseModel.Data.Add("Ciudades", departamentoBLL.ObtenerDepartamentos());
+                responseModel.Data.Add("Departamentos", departamentoBLL.ObtenerDepartamentos(departamentoReq));
             }
             catch (MVMException exc)
             {

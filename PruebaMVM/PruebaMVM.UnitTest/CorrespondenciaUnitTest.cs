@@ -4,10 +4,10 @@ using System;
 namespace PruebaMVM.UnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class CorrespondenciaUnitTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ObtenerCorrespondenciaPorId()
         {
         }
     }

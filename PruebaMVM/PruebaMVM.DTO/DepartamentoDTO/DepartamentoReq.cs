@@ -8,5 +8,6 @@ namespace PruebaMVM.DTO.DepartamentoDTO
 {
     public class DepartamentoReq
     {
+        public int DepartamentoId { get; set; }
     }
 }

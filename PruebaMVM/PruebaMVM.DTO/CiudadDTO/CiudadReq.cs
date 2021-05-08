@@ -8,5 +8,7 @@ namespace PruebaMVM.DTO.CiudadDTO
 {
     public class CiudadReq
     {
+        public int CiudadId { get; set; }
+        public int DepartamentoId { get; set; }
     }
 }

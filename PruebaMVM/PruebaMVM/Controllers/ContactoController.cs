@@ -85,7 +85,7 @@ namespace PruebaMVM.Controllers
         }
 
         /// <summary>
-        /// Guarda las Correspondenciaes
+        /// Guarda los Contactos
         /// </summary>
         /// <param name="contactoReq">Datos del contacto</param>
         /// <returns>Contacto Guardado</returns>
@@ -118,7 +118,7 @@ namespace PruebaMVM.Controllers
         }
 
         /// <summary>
-        /// Editar las Correspondenciaes
+        /// Editar los contactos
         /// </summary>
         /// <param name="contactoReq">Datos del contacto</param>
         [HttpPut]
@@ -150,7 +150,7 @@ namespace PruebaMVM.Controllers
         }
 
         /// <summary>
-        /// Eliminar las Correspondenciaes
+        /// Eliminar los Contactos
         /// </summary>
         /// <param name="CorrespondenciaReq"></param>
         [HttpDelete]

@@ -1,5 +1,6 @@
 ﻿using Prueba.BLL.Helper;
 using PruebaMVM.BLL.CiudadBLL;
+using PruebaMVM.DTO.CiudadDTO;
 using PruebaMVM.DTO.Response;
 using PruebaMVM.Utilities.Logs;
 using System;
@@ -22,16 +23,16 @@ namespace PruebaMVM.Controllers
         /// Obtiene las ciudades
         /// </summary>
         /// <returns>Ciudades</returns>
-        [HttpGet]
+        [HttpPost]
         [Route("Api/ObtenerCiudades")]
-        public ResponseModel ObtenerCiudades()
+        public ResponseModel ObtenerCiudades(CiudadReq ciudadReq)
         {
             ResponseModel responseModel = new ResponseModel();
             try
             {
                 responseModel.Message = "Datos Encontrados";
                 responseModel.Response = true;
-                responseModel.Data.Add("Ciudades", ciudadBLL.ObtenerCiudades());
+                responseModel.Data.Add("Ciudades", ciudadBLL.ObtenerCiudades(ciudadReq));
             }
             catch (MVMException exc)
             {

@@ -23,12 +23,15 @@ namespace PruebaMVM.BLL.CiudadBLL
         /// Obtiene las ciudades
         /// </summary>
         /// <returns>Ciudades</returns>
-        public List<CiudadRes> ObtenerCiudades()
+        public List<CiudadRes> ObtenerCiudades(CiudadReq ciudadReq)
         {
             List<CiudadRes> ciudades = new List<CiudadRes>();
             try
             {
-                ciudades = ciudadDAL.ObtenerCiudades();
+                ciudades = ciudadDAL.ObtenerCiudades(ciudadReq);
+
+                if (!ciudadReq.DepartamentoId.Equals(0))
+                    ciudades = ciudades.Where(c => c.DepartamentoId == ciudadReq.DepartamentoId).ToList();
             }
             catch (DataException exc)
             {

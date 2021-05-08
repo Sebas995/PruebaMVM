@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace PruebaMVM.BLL.DepartamentoBLL
 {
     /// <summary>
-    /// Crud de departamentos
+    /// CRUD de departamentos
     /// </summary>
     public class DepartamentoBLL
     {
@@ -21,13 +21,13 @@ namespace PruebaMVM.BLL.DepartamentoBLL
         /// <summary>
         /// Obtiene los departamentos
         /// </summary>
-        /// <returns></returns>
-        public List<DepartamentoRes> ObtenerDepartamentos()
+        /// <returns>Departamentos</returns>
+        public List<DepartamentoRes> ObtenerDepartamentos(DepartamentoReq departamentoReq)
         {
             List<DepartamentoRes> departamentos = new List<DepartamentoRes>();
             try
             {
-                departamentos = departamentoDAL.ObtenerDepartamentos();
+                departamentos = departamentoDAL.ObtenerDepartamentos(departamentoReq);
             }
             catch (DataException exc)
             {
