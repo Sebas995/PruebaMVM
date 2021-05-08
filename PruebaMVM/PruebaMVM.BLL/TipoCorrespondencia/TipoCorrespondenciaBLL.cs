@@ -24,10 +24,10 @@ namespace PruebaMVM.BLL.TipoCorrespondenciaBLL
         /// <returns>TipoCorrespondencia</returns>
         public List<TipoCorrespondencia> ObtenerTipoCorrespondencia()
         {
-            List<TipoCorrespondencia> comunicacion = new List<TipoCorrespondencia>();
+            List<TipoCorrespondencia> Correspondencia = new List<TipoCorrespondencia>();
             try
             {
-                comunicacion = tipoCorrespondenciaBLL.ObtenerTipoCorrespondencia();
+                Correspondencia = tipoCorrespondenciaBLL.ObtenerTipoCorrespondencia();
             }
             catch (DataException exc)
             {
@@ -50,7 +50,7 @@ namespace PruebaMVM.BLL.TipoCorrespondenciaBLL
                 throw new MVMException(EnumMensajes.ERROR_EXCEPTION.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
             }
 
-            return comunicacion;
+            return Correspondencia;
         }
     }
 }

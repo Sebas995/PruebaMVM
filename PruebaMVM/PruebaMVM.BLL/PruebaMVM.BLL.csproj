@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ciudad\CiudadBLL.cs" />
-    <Compile Include="Comunicacion\ComunicacionBLL.cs" />
+    <Compile Include="Comunicacion\CorrespondenciaBLL.cs" />
     <Compile Include="Contacto\ContactoBLL.cs" />
     <Compile Include="Departamento\DepartamentoBLL.cs" />
     <Compile Include="Estado\EstadoBLL.cs" />

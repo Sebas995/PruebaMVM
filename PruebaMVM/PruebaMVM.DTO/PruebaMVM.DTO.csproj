@@ -55,8 +55,8 @@
   <ItemGroup>
     <Compile Include="CiudadDTO\CiudadReq.cs" />
     <Compile Include="CiudadDTO\CiudadRes.cs" />
-    <Compile Include="ComunicacionDTO\ComunicacionReq.cs" />
-    <Compile Include="ComunicacionDTO\ComunicacionRes.cs" />
+    <Compile Include="ComunicacionDTO\CorrespondenciaReq.cs" />
+    <Compile Include="ComunicacionDTO\CorrespondenciaRes.cs" />
     <Compile Include="ContactoDTO\ContactoRes.cs" />
     <Compile Include="ContactoDTO\ContactoReq.cs" />
     <Compile Include="DepartamentoDTO\DepartamentoReq.cs" />

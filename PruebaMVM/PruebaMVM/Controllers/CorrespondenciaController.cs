@@ -1,6 +1,6 @@
 ﻿using Prueba.BLL.Helper;
 using PruebaMVM.BLL;
-using PruebaMVM.DTO.ComunicacionDTO;
+using PruebaMVM.DTO.CorrespondenciaDTO;
 using PruebaMVM.DTO.Response;
 using PruebaMVM.Utilities.Logs;
 using System;
@@ -13,27 +13,27 @@ using System.Web.Http;
 namespace PruebaMVM.Controllers
 {
     /// <summary>
-    /// Crud De Comunicaciones
+    /// Crud De Correspondenciaes
     /// </summary>
-    public class ComunicacionController : ApiController
+    public class CorrespondenciaController : ApiController
     {
-        ComunicacionBLL comunicacionBLL = new ComunicacionBLL();
+        CorrespondenciaBLL CorrespondenciaBLL = new CorrespondenciaBLL();
 
         /// <summary>
-        /// Obtiene las comunicaciones por Id
+        /// Obtiene las Correspondenciaes por Id
         /// </summary>
-        /// <param name="Id">Id de la Comunicacion</param>
-        /// <returns>Comunicacion</returns>
+        /// <param name="Id">Id de la Correspondencia</param>
+        /// <returns>Correspondencia</returns>
         [HttpGet]
-        [Route("Api/ObtenerComunicacionPorId/{Id}")]
-        public ResponseModel ObtenerComunicacionPorId(int Id)
+        [Route("Api/ObtenerCorrespondenciaPorId/{Id}")]
+        public ResponseModel ObtenerCorrespondenciaPorId(int Id)
         {
             ResponseModel responseModel = new ResponseModel();
             try
             {
                 responseModel.Message = "Datos Encontrados";
                 responseModel.Response = true;
-                responseModel.Data.Add("Comunicacion", comunicacionBLL.ObtenerComunicacionPorId(Id));
+                responseModel.Data.Add("Correspondencia", CorrespondenciaBLL.ObtenerCorrespondenciaPorId(Id));
             }
             catch (MVMException exc)
             {
@@ -53,19 +53,19 @@ namespace PruebaMVM.Controllers
         }
 
         /// <summary>
-        /// Obtiene las comunicaciones
+        /// Obtiene las Correspondenciaes
         /// </summary>
-        /// <returns>Comunicaciones</returns>
+        /// <returns>Correspondenciaes</returns>
         [HttpGet]
-        [Route("Api/ObtenerComunicaciones")]
-        public ResponseModel ObtenerComunicacionPorId()
+        [Route("Api/ObtenerCorrespondenciaes")]
+        public ResponseModel ObtenerCorrespondenciaes()
         {
             ResponseModel responseModel = new ResponseModel();
             try
             {
                 responseModel.Message = "Datos Encontrados";
                 responseModel.Response = true;
-                responseModel.Data.Add("Comunicaciones", comunicacionBLL.ObtenerComunicaciones());
+                responseModel.Data.Add("Correspondenciaes", CorrespondenciaBLL.ObtenerCorrespondenciaes());
             }
             catch (MVMException exc)
             {
@@ -85,20 +85,20 @@ namespace PruebaMVM.Controllers
         }
 
         /// <summary>
-        /// Guarda las comunicaciones
+        /// Guarda las Correspondenciaes
         /// </summary>
-        /// <param name="comunicacionReq"></param>
-        /// <returns></returns>
+        /// <param name="CorrespondenciaReq">Datos de la comunicación</param>
+        /// <returns>Correspondencia Guardada</returns>
         [HttpPost]
-        [Route("Api/GuardarComunicacion")]
-        public ResponseModel GuardarComunicacion(ComunicacionReq comunicacionReq)
+        [Route("Api/GuardarCorrespondencia")]
+        public ResponseModel GuardarCorrespondencia(CorrespondenciaReq CorrespondenciaReq)
         {
             ResponseModel responseModel = new ResponseModel();
             try
             {
                 responseModel.Message = "Comunicación guardada correctamente";
                 responseModel.Response = true;
-                responseModel.Data.Add("Comunicaciones", comunicacionBLL.GuardarComunicacion(comunicacionReq));
+                responseModel.Data.Add("Correspondenciaes", CorrespondenciaBLL.GuardarCorrespondencia(CorrespondenciaReq));
             }
             catch (MVMException exc)
             {
@@ -118,20 +118,19 @@ namespace PruebaMVM.Controllers
         }
 
         /// <summary>
-        /// Editar las comunicaciones
+        /// Editar las Correspondenciaes
         /// </summary>
-        /// <param name="comunicacionReq"></param>
-        /// <returns></returns>
+        /// <param name="CorrespondenciaReq">Datos de la comunicación</param>
         [HttpPut]
-        [Route("Api/EditarComunicacion")]
-        public ResponseModel EditarComunicacion(ComunicacionReq comunicacionReq)
+        [Route("Api/EditarCorrespondencia")]
+        public ResponseModel EditarCorrespondencia(CorrespondenciaReq CorrespondenciaReq)
         {
             ResponseModel responseModel = new ResponseModel();
             try
             {
+                CorrespondenciaBLL.EditarCorrespondencia(CorrespondenciaReq);
                 responseModel.Message = "Comunicación editada correctamente";
                 responseModel.Response = true;
-                responseModel.Data.Add("Comunicaciones", comunicacionBLL.GuardarComunicacion(comunicacionReq));
             }
             catch (MVMException exc)
             {
@@ -151,18 +150,17 @@ namespace PruebaMVM.Controllers
         }
 
         /// <summary>
-        /// Eliminar las comunicaciones
+        /// Eliminar las Correspondenciaes
         /// </summary>
-        /// <param name="Id"></param>
-        /// <returns></returns>
+        /// <param name="CorrespondenciaReq">Datos de la comunicación</param>
         [HttpDelete]
-        [Route("Api/EliminarComunicacion")]
-        public ResponseModel EliminarComunicacion(ComunicacionReq comunicacionReq)
+        [Route("Api/EliminarCorrespondencia")]
+        public ResponseModel EliminarCorrespondencia(CorrespondenciaReq CorrespondenciaReq)
         {
             ResponseModel responseModel = new ResponseModel();
             try
             {
-                comunicacionBLL.EliminarComunicacion(comunicacionReq)
+                CorrespondenciaBLL.EliminarCorrespondencia(CorrespondenciaReq);
                 responseModel.Message = "Comunicación eliminada correctamente";
                 responseModel.Response = true;
             }

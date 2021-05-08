@@ -8,42 +8,41 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Logging;
 using PruebaMVM.DTO;
-using PruebaMVM.DTO.ComunicacionDTO;
+using PruebaMVM.DTO.CorrespondenciaDTO;
 
 namespace PruebaMVM.DAL
 {
     /// <summary>
-    /// Crud de comunicaciones
+    /// Crud de Correspondenciaes
     /// </summary>
-    public class ComunicacionDAL
+    public class CorrespondenciaDAL
     {
-        private Entities entities = new Entities();
         private string pruebaMVM = ConfigurationManager.ConnectionStrings["PruebaMVM"].ToString();
 
         /// <summary>
-        /// Obtiene las comunicaciones por Id
+        /// Obtiene las Correspondenciaes por Id
         /// </summary>
-        /// <param name="Id">Id de la Comunicacion</param>
-        /// <returns>Comunicacion</returns>
-        public ComunicacionRes ObtenerComunicacionPorId(int Id) {
+        /// <param name="Id">Id de la Correspondencia</param>
+        /// <returns>Correspondencia</returns>
+        public CorrespondenciaRes ObtenerCorrespondenciaPorId(int Id) {
 
-            ComunicacionRes comunicacion = new ComunicacionRes();
+            CorrespondenciaRes Correspondencia = new CorrespondenciaRes();
 
             using (SqlConnection cnx = new SqlConnection(pruebaMVM))
             {
                 cnx.Open();
 
-                using (SqlCommand cmd = new SqlCommand("ConsultarComunicaciones", cnx))
+                using (SqlCommand cmd = new SqlCommand("ConsultarCorrespondenciaes", cnx))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@ComunicacionId", Id);
+                    cmd.Parameters.AddWithValue("@CorrespondenciaId", Id);
                     SqlDataReader rdr = cmd.ExecuteReader();
 
                     while (rdr.Read())
                     {
-                        comunicacion = new ComunicacionRes
+                        Correspondencia = new CorrespondenciaRes
                         {
-                            ComunicacionId = Convert.ToInt32(rdr["ComunicacionId"]),
+                            CorrespondenciaId = Convert.ToInt32(rdr["CorrespondenciaId"]),
                             TipoCorrespondencia = Convert.ToInt32(rdr["TipoCorrespondencia"]),
                             Estado = Convert.ToString(rdr["Estado"]).Trim(),
                             ContactoRemitente = Convert.ToString(rdr["Remitente"]).Trim(),
@@ -56,33 +55,33 @@ namespace PruebaMVM.DAL
                 cnx.Close();
             }
 
-            return comunicacion;
+            return Correspondencia;
         }
 
         /// <summary>
-        /// Obtiene las comunicaciones
+        /// Obtiene las Correspondenciaes
         /// </summary>
-        /// <returns>Comunicaciones</returns>
-        public List<ComunicacionRes> ObtenerComunicaciones()
+        /// <returns>Correspondenciaes</returns>
+        public List<CorrespondenciaRes> ObtenerCorrespondenciaes()
         {
 
-            List<ComunicacionRes> comunicaciones = new List<ComunicacionRes>();
+            List<CorrespondenciaRes> Correspondenciaes = new List<CorrespondenciaRes>();
 
             using (SqlConnection cnx = new SqlConnection(pruebaMVM))
             {
                 cnx.Open();
 
-                using (SqlCommand cmd = new SqlCommand("ConsultarComunicaciones", cnx))
+                using (SqlCommand cmd = new SqlCommand("ConsultarCorrespondenciaes", cnx))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@ComunicacionId", 0);
+                    cmd.Parameters.AddWithValue("@CorrespondenciaId", 0);
                     SqlDataReader rdr = cmd.ExecuteReader();
 
                     while (rdr.Read())
                     {
-                        comunicaciones.Add(new ComunicacionRes
+                        Correspondenciaes.Add(new CorrespondenciaRes
                         {
-                            ComunicacionId = Convert.ToInt32(rdr["ComunicacionId"]),
+                            CorrespondenciaId = Convert.ToInt32(rdr["CorrespondenciaId"]),
                             TipoCorrespondencia = Convert.ToInt32(rdr["TipoCorrespondencia"]),
                             Estado = Convert.ToString(rdr["Estado"]).Trim(),
                             ContactoRemitente = Convert.ToString(rdr["Remitente"]).Trim(),
@@ -95,35 +94,35 @@ namespace PruebaMVM.DAL
                 cnx.Close();
             }
 
-            return comunicaciones;
+            return Correspondenciaes;
         }
 
         /// <summary>
-        /// Obtiene las comunicaciones
+        /// Obtiene las Correspondenciaes
         /// </summary>
-        /// <returns>Comunicaciones</returns>
-        public ComunicacionRes GuardarComunicacion(ComunicacionReq comunicacionReq)
+        /// <returns>Correspondenciaes</returns>
+        public CorrespondenciaRes GuardarCorrespondencia(CorrespondenciaReq CorrespondenciaReq)
         {
-            ComunicacionRes comunicacion = new ComunicacionRes();
+            CorrespondenciaRes Correspondencia = new CorrespondenciaRes();
 
             using (SqlConnection cnx = new SqlConnection(pruebaMVM))
             {
                 cnx.Open();
 
-                using (SqlCommand cmd = new SqlCommand("InsertarComunicacion", cnx))
+                using (SqlCommand cmd = new SqlCommand("InsertarCorrespondencia", cnx))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@TipoCorrespndencia", comunicacionReq.TipoCorrespondencia);
-                    cmd.Parameters.AddWithValue("@Estado", comunicacionReq.Estado);
-                    cmd.Parameters.AddWithValue("@ContactoDestinatario", comunicacionReq.ContactoDestinatario);
-                    cmd.Parameters.AddWithValue("@ContactoRemitente", comunicacionReq.ContactoRemitente);
-                    cmd.Parameters.AddWithValue("@UsuarioCreacion", comunicacionReq.UsuarioCreacion);
+                    cmd.Parameters.AddWithValue("@TipoCorrespndencia", CorrespondenciaReq.TipoCorrespondencia);
+                    cmd.Parameters.AddWithValue("@Estado", CorrespondenciaReq.Estado);
+                    cmd.Parameters.AddWithValue("@ContactoDestinatario", CorrespondenciaReq.ContactoDestinatario);
+                    cmd.Parameters.AddWithValue("@ContactoRemitente", CorrespondenciaReq.ContactoRemitente);
+                    cmd.Parameters.AddWithValue("@UsuarioCreacion", CorrespondenciaReq.UsuarioCreacion);
                     SqlDataReader rdr = cmd.ExecuteReader();
 
                     while (rdr.Read())
                     {
-                        comunicacion = new ComunicacionRes { 
-                            ComunicacionId = Convert.ToInt32(rdr["ComunicacionId"]),
+                        Correspondencia = new CorrespondenciaRes { 
+                            CorrespondenciaId = Convert.ToInt32(rdr["CorrespondenciaId"]),
                             TipoCorrespondencia = Convert.ToInt32(rdr["TipoCorrespondencia"]),
                             Estado = Convert.ToString(rdr["Estado"]).Trim(),
                             ContactoRemitente = Convert.ToString(rdr["Remitente"]).Trim(),
@@ -136,27 +135,27 @@ namespace PruebaMVM.DAL
                 cnx.Close();
             }
 
-            return comunicacion;
+            return Correspondencia;
         }
 
         /// <summary>
-        /// Editar las comunicaciones
+        /// Editar las Correspondenciaes
         /// </summary>
-        /// <param name="comunicacionReq"></param>
-        public void EditarComunicacion(ComunicacionReq comunicacionReq)
+        /// <param name="CorrespondenciaReq"></param>
+        public void EditarCorrespondencia(CorrespondenciaReq CorrespondenciaReq)
         {
             using (SqlConnection cnx = new SqlConnection(pruebaMVM))
             {
                 cnx.Open();
 
-                using (SqlCommand cmd = new SqlCommand("EditarComunicacion", cnx))
+                using (SqlCommand cmd = new SqlCommand("EditarCorrespondencia", cnx))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@ComunicacionId", comunicacionReq.ComunicacionId);
-                    cmd.Parameters.AddWithValue("@Estado", comunicacionReq.Estado);
-                    cmd.Parameters.AddWithValue("@ContactoDestinatario", comunicacionReq.ContactoDestinatario);
-                    cmd.Parameters.AddWithValue("@ContactoRemitente", comunicacionReq.ContactoRemitente);
-                    cmd.Parameters.AddWithValue("@UsuarioModificacion", comunicacionReq.UsuarioModificacion);
+                    cmd.Parameters.AddWithValue("@CorrespondenciaId", CorrespondenciaReq.CorrespondenciaId);
+                    cmd.Parameters.AddWithValue("@Estado", CorrespondenciaReq.Estado);
+                    cmd.Parameters.AddWithValue("@ContactoDestinatario", CorrespondenciaReq.ContactoDestinatario);
+                    cmd.Parameters.AddWithValue("@ContactoRemitente", CorrespondenciaReq.ContactoRemitente);
+                    cmd.Parameters.AddWithValue("@UsuarioModificacion", CorrespondenciaReq.UsuarioModificacion);
                     cmd.ExecuteReader();
 
                 }
@@ -165,20 +164,20 @@ namespace PruebaMVM.DAL
         }
 
         /// <summary>
-        /// Eliminar las comunicaciones
+        /// Eliminar las Correspondenciaes
         /// </summary>
-        /// <param name="comunicacionReq"></param>
-        public void EliminarComunicacion(ComunicacionReq comunicacionReq)
+        /// <param name="CorrespondenciaReq"></param>
+        public void EliminarCorrespondencia(CorrespondenciaReq CorrespondenciaReq)
         {
             using (SqlConnection cnx = new SqlConnection(pruebaMVM))
             {
                 cnx.Open();
 
-                using (SqlCommand cmd = new SqlCommand("EliminarComunicacion", cnx))
+                using (SqlCommand cmd = new SqlCommand("EliminarCorrespondencia", cnx))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@ComunicacionId", comunicacionReq.ComunicacionId);
-                    cmd.Parameters.AddWithValue("@UsuarioModificacion", comunicacionReq.UsuarioModificacion);
+                    cmd.Parameters.AddWithValue("@CorrespondenciaId", CorrespondenciaReq.CorrespondenciaId);
+                    cmd.Parameters.AddWithValue("@UsuarioModificacion", CorrespondenciaReq.UsuarioModificacion);
                     cmd.ExecuteReader();
 
                 }

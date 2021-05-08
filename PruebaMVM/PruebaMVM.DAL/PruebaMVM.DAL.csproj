@@ -61,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ciudad\CiudadDAL.cs" />
-    <Compile Include="Comunicacion\ComunicacionDAL.cs" />
+    <Compile Include="Comunicacion\CorrespondenciaDAL.cs" />
     <Compile Include="Contacto\ContactoDAL.cs" />
     <Compile Include="Departamento\DepartamentoDAL.cs" />
     <Compile Include="Estado\EstadoDAL.cs" />

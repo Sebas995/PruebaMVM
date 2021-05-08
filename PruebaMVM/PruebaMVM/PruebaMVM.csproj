@@ -184,7 +184,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CiudadController.cs" />
-    <Compile Include="Controllers\ComunicacionController.cs" />
+    <Compile Include="Controllers\CorrespondenciaController.cs" />
     <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EstadoController.cs" />

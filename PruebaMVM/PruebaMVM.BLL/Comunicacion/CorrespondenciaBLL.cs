@@ -8,26 +8,29 @@ using Microsoft.VisualStudio.TestTools.UnitTesting.Logging;
 using Prueba.BLL.Helper;
 using PruebaMVM.DAL;
 using PruebaMVM.DTO;
-using PruebaMVM.DTO.ComunicacionDTO;
+using PruebaMVM.DTO.CorrespondenciaDTO;
 using PruebaMVM.Utilities.Logs;
 
 namespace PruebaMVM.BLL
 {
-    public class ComunicacionBLL
+    /// <summary>
+    /// CRUD de Correspondenciaes
+    /// </summary>
+    public class CorrespondenciaBLL
     {
-        ComunicacionDAL comunicacionDAL = new ComunicacionDAL();
+        CorrespondenciaDAL CorrespondenciaDAL = new CorrespondenciaDAL();
 
         /// <summary>
-        /// Obtiene las comunicaciones por Id
+        /// Obtiene las Correspondenciaes por Id
         /// </summary>
-        /// <param name="Id">Id de la Comunicacion</param>
-        /// <returns>Comunicacion</returns>
-        public ComunicacionRes ObtenerComunicacionPorId(int Id)
+        /// <param name="Id">Id de la Comunicación</param>
+        /// <returns>Comunicación</returns>
+        public CorrespondenciaRes ObtenerCorrespondenciaPorId(int Id)
         {
-            ComunicacionRes comunicacion = new ComunicacionRes();
+            CorrespondenciaRes Correspondencia = new CorrespondenciaRes();
             try
             {
-                comunicacion = comunicacionDAL.ObtenerComunicacionPorId(Id);
+                Correspondencia = CorrespondenciaDAL.ObtenerCorrespondenciaPorId(Id);
             }
             catch (DataException exc)
             {
@@ -50,19 +53,19 @@ namespace PruebaMVM.BLL
                 throw new MVMException(EnumMensajes.ERROR_EXCEPTION.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
             }
 
-            return comunicacion;
+            return Correspondencia;
         }
 
         /// <summary>
-        /// Obtiene las comunicaciones
+        /// Obtiene las Correspondenciaes
         /// </summary>
-        /// <returns>Comunicaciones</returns>
-        public List<ComunicacionRes> ObtenerComunicaciones()
+        /// <returns>Correspondenciaes</returns>
+        public List<CorrespondenciaRes> ObtenerCorrespondenciaes()
         {
-            List<ComunicacionRes> comunicaciones = new List<ComunicacionRes>();
+            List<CorrespondenciaRes> Correspondenciaes = new List<CorrespondenciaRes>();
             try
             {
-                comunicaciones = comunicacionDAL.ObtenerComunicaciones();
+                Correspondenciaes = CorrespondenciaDAL.ObtenerCorrespondenciaes();
             }
             catch (DataException exc)
             {
@@ -85,20 +88,20 @@ namespace PruebaMVM.BLL
                 throw new MVMException(EnumMensajes.ERROR_EXCEPTION.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
             }
 
-            return comunicaciones;
+            return Correspondenciaes;
         }
 
         /// <summary>
-        /// Guarda las Comunicaciones
+        /// Guarda las Correspondenciaes
         /// </summary>
-        /// <param name="comunicacionReq">Datos de la comunicacion</param>
-        /// <returns>Datos de la comunicacion</returns>
-        public ComunicacionRes GuardarComunicacion(ComunicacionReq comunicacionReq)
+        /// <param name="CorrespondenciaReq">Datos de la Correspondencia</param>
+        /// <returns>Datos de la Correspondencia</returns>
+        public CorrespondenciaRes GuardarCorrespondencia(CorrespondenciaReq CorrespondenciaReq)
         {
-            ComunicacionRes comunicacion = new ComunicacionRes();
+            CorrespondenciaRes Correspondencia = new CorrespondenciaRes();
             try
             {
-                comunicacion = comunicacionDAL.GuardarComunicacion(comunicacionReq);
+                Correspondencia = CorrespondenciaDAL.GuardarCorrespondencia(CorrespondenciaReq);
             }
             catch (DataException exc)
             {
@@ -121,20 +124,19 @@ namespace PruebaMVM.BLL
                 throw new MVMException(EnumMensajes.ERROR_EXCEPTION.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
             }
 
-            return comunicacion;
+            return Correspondencia;
         }
 
         /// <summary>
-        /// Editar las comunicaciones
+        /// Editar las Correspondenciaes
         /// </summary>
-        /// <param name="comunicacionReq"></param>
-        /// <returns></returns>
-        public void EditarComunicacion(ComunicacionReq comunicacionReq)
+        /// <param name="CorrespondenciaReq">Datos de la Correspondencia</param>
+        public void EditarCorrespondencia(CorrespondenciaReq CorrespondenciaReq)
         {
 
             try
             {
-                comunicacionDAL.EditarComunicacion(comunicacionReq);
+                CorrespondenciaDAL.EditarCorrespondencia(CorrespondenciaReq);
             }
             catch (DataException exc)
             {
@@ -159,14 +161,14 @@ namespace PruebaMVM.BLL
         }
 
         /// <summary>
-        /// Eliminar las comunicaciones
+        /// Eliminar las Correspondenciaes
         /// </summary>
-        /// <param name="comunicacionReq">Datos de la comunicacion</param>
-        public void EliminarComunicacion(ComunicacionReq comunicacionReq)
+        /// <param name="CorrespondenciaReq">Datos de la Correspondencia</param>
+        public void EliminarCorrespondencia(CorrespondenciaReq CorrespondenciaReq)
         {
             try
             {
-                comunicacionDAL.EliminarComunicacion(comunicacionReq);
+                CorrespondenciaDAL.EliminarCorrespondencia(CorrespondenciaReq);
             }
             catch (DataException exc)
             {
