@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebaMVM.DTO.CorrespondenciaDTO
+namespace PruebaMVMFront.Models.CorrespondenciaDTO
 {
     public class CorrespondenciaReq
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebaMVM.DTO.ContactoDTO
+namespace PruebaMVMFront.Models.ContactoDTO
 {
     public class ContactoRes
     {

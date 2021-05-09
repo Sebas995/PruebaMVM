@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebaMVM.DTO.CiudadDTO
+namespace PruebaMVMFront.Models.CiudadDTO
 {
     public class CiudadReq
     {

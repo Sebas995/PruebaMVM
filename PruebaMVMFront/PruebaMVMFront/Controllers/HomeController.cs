@@ -1,7 +1,7 @@
-﻿using PruebaMVM.DTO.UsuarioDTO;
-using PruebaMVM.Utilities.Logs;
+﻿using PruebaMVM.Utilities.Logs;
 using PruebaMVMFront.LlamarServicios;
 using PruebaMVMFront.Models;
+using PruebaMVMFront.Models.UsuarioDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +53,16 @@ namespace PruebaMVMFront.Controllers
                 //LogError.GuardarError(pruebaExc);
             }
             return View("Index", loginModel);
+        }
+
+        /// <summary>
+        /// Cierra la sesion activa
+        /// </summary>
+        public ActionResult CerrarSesion()
+        {
+            Session.Clear();
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

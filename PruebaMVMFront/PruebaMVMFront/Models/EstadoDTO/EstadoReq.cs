@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebaMVM.DTO.EstadoDTO
+namespace PruebaMVMFront.Models.EstadoDTO
 {
     public class EstadoReq
     {

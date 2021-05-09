@@ -1,7 +1,30 @@
-﻿
-@{
-    ViewBag.Title = "Correspondencia";
-}
+﻿@model List<PruebaMVMFront.Models.CorrespondenciaDTO.CorrespondenciaRes>
 
 <h2>Correspondencia</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Numero Radicado</th>
+            <th>Estado</th>
+            <th>Remitente</th>
+            <th>Destinatario</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Correspondencia in Model)
+        {
+            <tr>
+                <td>@Correspondencia.NumeroRadicado</td>
+                <td>@Correspondencia.Estado</td>
+                <td>@Correspondencia.ContactoRemitente</td>
+                <td>@Correspondencia.ContactoDestinatario</td>
+                <td><form action="/" method="post"></form></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
 

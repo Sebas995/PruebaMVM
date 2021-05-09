@@ -37,9 +37,12 @@
                         }
                         else
                         {
-                            <li>@Html.ActionLink("Correspondencia", "Index", "Help", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("Correspondencia", "CorrespondenciaDestinatario", "Correspondencia", new { area = "" }, null)</li>
                         }
                     </ul>
+                    <div class="nav navbar-nav navbar-right">
+                        @Html.ActionLink("Cerrar Sesion", "CerrarSesion", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    </div>
                 </div>
             </div>
         </div>

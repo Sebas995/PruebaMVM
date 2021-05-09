@@ -1,6 +1,7 @@
-﻿using PruebaMVM.DTO.CorrespondenciaDTO;
-using PruebaMVM.DTO.UsuarioDTO;
+﻿using PruebaMVM.Utilities.Logs;
 using PruebaMVMFront.LlamarServicios;
+using PruebaMVMFront.Models.CorrespondenciaDTO;
+using PruebaMVMFront.Models.UsuarioDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,27 @@ namespace PruebaMVMFront.Controllers
             return View();
         }
 
-        public ActionResult Correspondencias()
+        public ActionResult CorrespondenciaDestinatario()
         {
-            var Usuario = (UsuarioRes)Session["Usuario"];
-            List <CorrespondenciaRes> correspondenciaRes = new List<CorrespondenciaRes>();
-            correspondenciaRes = serviciosCorrespondencia.ObtenerCorrespondenciaPorIdContacto(Usuario.ContactoId);
+           List<CorrespondenciaRes> correspondenciaRes = new List<CorrespondenciaRes>();
+
+            try
+            {
+                ViewBag.Title = "Correspondencia de destinatario";
+                var Usuario = (UsuarioRes)Session["Usuario"];
+                correspondenciaRes = serviciosCorrespondencia.ObtenerCorrespondenciaPorIdContacto(Usuario.ContactoId);
+            }
+            catch (MVMException exc)
+            {
+                ModelState.AddModelError("LoginError", exc.Message);
+                //LogError.GuardarError(exc);
+            }
+            catch (Exception exc)
+            {
+                ModelState.AddModelError("LoginError", exc.Message);
+                MVMException pruebaExc = new MVMException(exc.Message, exc.GetType().ToString(), exc.Message, exc.StackTrace);
+                //LogError.GuardarError(pruebaExc);
+            }
 
             return View("Correspondencia", correspondenciaRes);
         }

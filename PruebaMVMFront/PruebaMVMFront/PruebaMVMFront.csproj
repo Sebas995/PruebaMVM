@@ -175,8 +175,8 @@
     <Compile Include="LlamarServicios\ServiciosUsuario.cs" />
     <Compile Include="Models\CiudadDTO\CiudadReq.cs" />
     <Compile Include="Models\CiudadDTO\CiudadRes.cs" />
-    <Compile Include="Models\ComunicacionDTO\CorrespondenciaReq.cs" />
-    <Compile Include="Models\ComunicacionDTO\CorrespondenciaRes.cs" />
+    <Compile Include="Models\CorrespondenciaDTO\CorrespondenciaReq.cs" />
+    <Compile Include="Models\CorrespondenciaDTO\CorrespondenciaRes.cs" />
     <Compile Include="Models\ContactoDTO\ContactoReq.cs" />
     <Compile Include="Models\ContactoDTO\ContactoRes.cs" />
     <Compile Include="Models\DepartamentoDTO\DepartamentoReq.cs" />

@@ -11,10 +11,18 @@ using System.Threading.Tasks;
 
 namespace PruebaMVM.DAL.UsuarioDAL
 {
+    /// <summary>
+    /// CRUD de usuarios
+    /// </summary>
     public class UsuarioDAL
     {
         private string pruebaMVM = ConfigurationManager.ConnectionStrings["PruebaMVM"].ToString();
 
+        /// <summary>
+        /// Iniciar Sesion del usuario
+        /// </summary>
+        /// <param name="UsuarioReq">Correo y contraseña
+        /// <returns>Usuario</returns>
         public UsuarioRes IniciarSesion(UsuarioReq usuarioReq)
         {
             UsuarioRes usuario = new UsuarioRes();

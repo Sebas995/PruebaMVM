@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using PruebaMVM.DTO.CorrespondenciaDTO;
+using PruebaMVMFront.Models.CorrespondenciaDTO;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -28,7 +28,7 @@ namespace PruebaMVMFront.LlamarServicios
 
             try
             {
-                string urlApi = string.Format("{0}ObtenerCorrespondenciaPorIdContacto/{1}", servicios, Id);
+                string urlApi = String.Format("{0}ObtenerCorrespondenciaPorIdContacto/{1}", servicios, Id);
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlApi);
                 request.Method = "GET";
                 HttpClient client = new HttpClient();
@@ -45,7 +45,7 @@ namespace PruebaMVMFront.LlamarServicios
                     if (jContent["Respuesta"].ToString() == "false")
                         throw new Exception(jContent["mensaje"].ToString());
 
-                    var respuesta = jContent["Datos"]["Usuario"];
+                    var respuesta = jContent["Datos"]["Correspondencia"];
 
                     foreach (var dato in respuesta)
                     {
@@ -53,9 +53,10 @@ namespace PruebaMVMFront.LlamarServicios
                         {
                             CorrespondenciaId = Convert.ToInt32(dato["CorrespondenciaId"]),
                             TipoCorrespondencia = Convert.ToInt32(dato["TipoCorrespondencia"]),
+                            NumeroRadicado = Convert.ToString(dato["NumeroRadicado"]).Trim(),
                             Estado = Convert.ToString(dato["Estado"]).Trim(),
-                            ContactoRemitente = Convert.ToString(dato["Remitente"]).Trim(),
-                            ContactoDestinatario = Convert.ToString(dato["Destinatario"]).Trim(),
+                            ContactoRemitente = Convert.ToString(dato["ContactoRemitente"]).Trim(),
+                            ContactoDestinatario = Convert.ToString(dato["ContactoDestinatario"]).Trim(),
                         });
                     }
 

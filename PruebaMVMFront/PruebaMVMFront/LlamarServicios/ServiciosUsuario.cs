@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using PruebaMVM.DTO.UsuarioDTO;
 using PruebaMVM.Utilities.Logs;
+using PruebaMVMFront.Models.UsuarioDTO;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -33,7 +33,7 @@ namespace PruebaMVMFront.LlamarServicios
 
             try
             {
-                string urlApi = string.Format("{0}IniciarSesion", servicios);
+                string urlApi = String.Format("{0}IniciarSesion", servicios);
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlApi);
                 request.Method = "POST";
                 HttpClient client = new HttpClient();

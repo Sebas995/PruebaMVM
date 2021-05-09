@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebaMVM.DTO.UsuarioDTO
+namespace PruebaMVMFront.Models.UsuarioDTO
 {
     public class UsuarioRes
     {
