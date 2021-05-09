@@ -40,6 +40,15 @@ namespace PruebaMVMFront.Controllers
                 var Usuario = serviciosUsuario.Login(new UsuarioReq { Correo = loginModel.Usuario, Contrasena = loginModel.Contrasena});
                 Session["Usuario"] = Usuario;
                 Session["Rol"] = Usuario.Rol;
+
+                if (Usuario.Rol != "Destinatario")
+                {
+                    return RedirectToAction("Correspondencia", "Correspondencia");
+                }
+                else
+                {
+                    return RedirectToAction("CorrespondenciaDestinatario", "Correspondencia");
+                }
             }
             catch (MVMException exc)
             {

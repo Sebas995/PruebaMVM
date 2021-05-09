@@ -98,7 +98,7 @@ namespace PruebaMVM.Controllers
             {
                 responseModel.Mensaje = "Datos Encontrados";
                 responseModel.Respuesta = true;
-                responseModel.Datos.Add("Correspondenciaes", CorrespondenciaBLL.ObtenerCorrespondencias());
+                responseModel.Datos.Add("Correspondencias", CorrespondenciaBLL.ObtenerCorrespondencias());
             }
             catch (MVMException exc)
             {
@@ -186,7 +186,7 @@ namespace PruebaMVM.Controllers
         /// Eliminar las Correspondenciaes
         /// </summary>
         /// <param name="CorrespondenciaReq">Datos de la comunicación</param>
-        [HttpDelete]
+        [HttpPost]
         [Route("Api/EliminarCorrespondencia")]
         public ResponseModel EliminarCorrespondencia(CorrespondenciaReq CorrespondenciaReq)
         {

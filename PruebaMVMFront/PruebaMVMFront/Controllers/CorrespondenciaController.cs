@@ -19,12 +19,31 @@ namespace PruebaMVMFront.Controllers
 
         public ActionResult Correspondencia()
         {
-            return View();
+            List<CorrespondenciaRes> correspondenciaRes = new List<CorrespondenciaRes>();
+
+            try
+            {
+                ViewBag.Title = "Correspondencias";
+                correspondenciaRes = serviciosCorrespondencia.ObtenerCorrespondencias();
+            }
+            catch (MVMException exc)
+            {
+                ModelState.AddModelError("CorrespondenciaError", exc.Message);
+                //LogError.GuardarError(exc);
+            }
+            catch (Exception exc)
+            {
+                ModelState.AddModelError("CorrespondenciaError", exc.Message);
+                MVMException pruebaExc = new MVMException(exc.Message, exc.GetType().ToString(), exc.Message, exc.StackTrace);
+                //LogError.GuardarError(pruebaExc);
+            }
+
+            return View(correspondenciaRes);
         }
 
         public ActionResult CorrespondenciaDestinatario()
         {
-           List<CorrespondenciaRes> correspondenciaRes = new List<CorrespondenciaRes>();
+            List<CorrespondenciaRes> correspondenciaRes = new List<CorrespondenciaRes>();
 
             try
             {
@@ -34,17 +53,55 @@ namespace PruebaMVMFront.Controllers
             }
             catch (MVMException exc)
             {
-                ModelState.AddModelError("LoginError", exc.Message);
+                ModelState.AddModelError("CorrespondenciaError", exc.Message);
                 //LogError.GuardarError(exc);
             }
             catch (Exception exc)
             {
-                ModelState.AddModelError("LoginError", exc.Message);
+                ModelState.AddModelError("CorrespondenciaError", exc.Message);
                 MVMException pruebaExc = new MVMException(exc.Message, exc.GetType().ToString(), exc.Message, exc.StackTrace);
                 //LogError.GuardarError(pruebaExc);
             }
 
             return View("Correspondencia", correspondenciaRes);
+        }
+
+        //public ActionResult EditarCorrespondencia(int Id)
+        //{ 
+
+        //}
+
+        /// <summary>
+        /// Eliminar la correspondencia
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult EliminarCorrespondencia(int Id)
+        {
+            string Mensaje = String.Empty;
+
+            try
+            {
+                var Usuario = (UsuarioRes)Session["Usuario"];
+                Mensaje = serviciosCorrespondencia.EliminarCorrespondencia(new CorrespondenciaReq { CorrespondenciaId = Id, UsuarioModificacion = Usuario.UsuarioId});
+                TempData["Correspondencia"] = Mensaje;
+            }
+            catch (MVMException exc)
+            {
+                ModelState.AddModelError("CorrespondenciaError", exc.Message);
+                return View();
+                //LogError.GuardarError(exc);
+            }
+            catch (Exception exc)
+            {
+                ModelState.AddModelError("CorrespondenciaError", exc.Message);
+                MVMException pruebaExc = new MVMException(exc.Message, exc.GetType().ToString(), exc.Message, exc.StackTrace);
+                return View();
+                //LogError.GuardarError(pruebaExc);
+            }
+
+            return RedirectToAction("CorrespondenciaDestinatario", "Correspondencia");
         }
     }
 }

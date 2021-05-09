@@ -1,7 +1,11 @@
 ﻿@model List<PruebaMVMFront.Models.CorrespondenciaDTO.CorrespondenciaRes>
 
 <h2>Correspondencia</h2>
-
+@Html.ValidationMessage("CorrespondenciaError", new { @style = "color:red;" })
+@if (TempData["Correspondencia"] != null)
+{
+    <label style="color: green;">@TempData["Correspondencia"]</label>
+}
 <table class="table">
     <thead>
         <tr>
@@ -9,7 +13,8 @@
             <th>Estado</th>
             <th>Remitente</th>
             <th>Destinatario</th>
-            <th>Acción</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +25,8 @@
                 <td>@Correspondencia.Estado</td>
                 <td>@Correspondencia.ContactoRemitente</td>
                 <td>@Correspondencia.ContactoDestinatario</td>
-                <td><form action="/" method="post"></form></td>
+                <td><form action="/Correspondencia/EditarCorrespondencia/@Correspondencia.CorrespondenciaId" method="post"><input class="form-control btn-info" type="submit" value="Editar" name="Editar" /></form></td>
+                <td><form action="/Correspondencia/EliminarCorrespondencia/@Correspondencia.CorrespondenciaId" method="post"><input class="form-control btn-danger" type="submit" value="Eliminar" name="Eliminar" /></form></td>
             </tr>
         }
     </tbody>

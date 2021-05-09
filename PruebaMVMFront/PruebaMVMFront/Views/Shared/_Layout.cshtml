@@ -33,7 +33,7 @@
                         }
                         @if (Session["Rol"].ToString() == "Destinatario")
                         {
-                            <li>@Html.ActionLink("Correspondencia", "Index", "Help", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("Correspondencia", "Correspondencia", "Correspondencia", new { area = "" }, null)</li>
                         }
                         else
                         {
