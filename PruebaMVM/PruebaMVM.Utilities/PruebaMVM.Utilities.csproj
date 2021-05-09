@@ -55,6 +55,7 @@
     <Compile Include="Logs\LogError.cs" />
     <Compile Include="Logs\MVMException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguridad\SeguridadContrasena.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

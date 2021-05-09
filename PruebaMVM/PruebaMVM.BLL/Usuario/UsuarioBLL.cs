@@ -11,9 +11,58 @@ using System.Threading.Tasks;
 
 namespace PruebaMVM.BLL.UsuarioBLL
 {
+    /// <summary>
+    /// CRUD de usuarios
+    /// </summary>
     public class UsuarioBLL
     {
         UsuarioDAL usuarioDAL = new UsuarioDAL();
+
+        /// <summary>
+        /// Metodo de iniciar sesion
+        /// </summary>
+        /// <param name="UsuarioReq">Datos para iniciar sesion</param>
+        /// <param name="Mensaje">Mensaje de respuesta</param>
+        /// <returns>Datos del usuario</returns>
+        public UsuarioRes IniciarSesion(UsuarioReq usuarioReq, ref string Mensaje, ref bool Respuesta)
+        {
+            UsuarioRes usuario = new UsuarioRes();
+            try
+            {
+                usuario = usuarioDAL.IniciarSesion(usuarioReq);
+                if (usuario.UsuarioId != 0) {
+                    Mensaje = "Usuario Encontrado";
+                    Respuesta = true;
+                }
+                else
+                {
+                    Mensaje = "Usuario o Contraseña incorrectos";
+                    Respuesta = false;
+                }
+            }
+            catch (DataException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_DATABASE.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (ArgumentException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_ARGUMENT.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (NullReferenceException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_NULLREFERENCE.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (TimeoutException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_TIMEOUT.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (Exception exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_EXCEPTION.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+
+            return usuario;
+        }
 
         /// <summary>
         /// Obtiene el Usuario por Id

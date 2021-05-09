@@ -78,6 +78,10 @@
       <Project>{8252402c-b488-4bad-a01b-93d0f23f5461}</Project>
       <Name>PruebaMVM.DTO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PruebaMVM.Utilities\PruebaMVM.Utilities.csproj">
+      <Project>{6e791ebe-674a-4e00-a893-e7c92b8dea18}</Project>
+      <Name>PruebaMVM.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

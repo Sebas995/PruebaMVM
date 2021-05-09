@@ -121,5 +121,11 @@
       <LastGenOutput>PruebaMVM.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PruebaMVM.Utilities\PruebaMVM.Utilities.csproj">
+      <Project>{6e791ebe-674a-4e00-a893-e7c92b8dea18}</Project>
+      <Name>PruebaMVM.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

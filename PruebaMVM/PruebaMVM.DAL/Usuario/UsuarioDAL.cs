@@ -1,4 +1,5 @@
 ﻿using PruebaMVM.DTO.UsuarioDTO;
+using PruebaMVM.Utilities.Seguridad;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,6 +15,42 @@ namespace PruebaMVM.DAL.UsuarioDAL
     {
         private string pruebaMVM = ConfigurationManager.ConnectionStrings["PruebaMVM"].ToString();
 
+        public UsuarioRes IniciarSesion(UsuarioReq usuarioReq)
+        {
+            UsuarioRes usuario = new UsuarioRes();
+
+            using (SqlConnection cnx = new SqlConnection(pruebaMVM))
+            {
+                cnx.Open();
+
+                using (SqlCommand cmd = new SqlCommand("IniciarSesion", cnx))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Correo", usuarioReq.Correo);
+                    cmd.Parameters.AddWithValue("@Contrasena", SeguridadContrasena.Encrypt(usuarioReq.Contrasena));
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        usuario = new UsuarioRes
+                        {
+                            UsuarioId = Convert.ToInt32(rdr["UsuarioId"]),
+                            Nombres = Convert.ToString(rdr["Nombres"]),
+                            Apellidos = Convert.ToString(rdr["Apellidos"]),
+                            Correo = Convert.ToString(rdr["Correo"]),
+                            Rol = Convert.ToString(rdr["Rol"]),
+                            TelefonoContacto = Convert.ToString(rdr["TelefonoContacto"]),
+                        };
+                    }
+                    rdr.Close();
+
+                }
+                cnx.Close();
+            }
+
+            return usuario;
+        }
+
         /// <summary>
         /// Obtiene los Usuarios por Id
         /// </summary>
@@ -21,7 +58,6 @@ namespace PruebaMVM.DAL.UsuarioDAL
         /// <returns>Usuario</returns>
         public UsuarioRes ObtenerUsuarioPorId(int Id)
         {
-
             UsuarioRes usuario = new UsuarioRes();
 
             using (SqlConnection cnx = new SqlConnection(pruebaMVM))
@@ -43,6 +79,7 @@ namespace PruebaMVM.DAL.UsuarioDAL
                             Apellidos = Convert.ToString(rdr["Apellidos"]),    
                             Correo = Convert.ToString(rdr["Correo"]),
                             Rol = Convert.ToString(rdr["Rol"]),
+                            ContactoId = Convert.ToInt32(rdr["ContactoId"]),
                             TelefonoContacto = Convert.ToString(rdr["TelefonoContacto"]),
                         };
                     }
@@ -83,6 +120,7 @@ namespace PruebaMVM.DAL.UsuarioDAL
                             Apellidos = Convert.ToString(rdr["Apellidos"]),
                             Correo = Convert.ToString(rdr["Correo"]),
                             Rol = Convert.ToString(rdr["Rol"]),
+                            ContactoId = Convert.ToInt32(rdr["ContactoId"]),
                             TelefonoContacto = Convert.ToString(rdr["TelefonoContacto"]),
                         });
                     }
@@ -114,6 +152,7 @@ namespace PruebaMVM.DAL.UsuarioDAL
                     cmd.Parameters.AddWithValue("@Contrasena", UsuarioReq.Contrasena);
                     cmd.Parameters.AddWithValue("@Rol", UsuarioReq.RolId);
                     cmd.Parameters.AddWithValue("@Telefono", UsuarioReq.TelefonoContacto);
+                    cmd.Parameters.AddWithValue("@ContactoId", UsuarioReq.ContactoId);
                     cmd.Parameters.AddWithValue("@UsuarioCreacion", UsuarioReq.UsuarioCreacion);
                     cmd.ExecuteReader();
 
@@ -141,6 +180,7 @@ namespace PruebaMVM.DAL.UsuarioDAL
                     cmd.Parameters.AddWithValue("@Correo", UsuarioReq.Correo);
                     cmd.Parameters.AddWithValue("@Rol", UsuarioReq.RolId);
                     cmd.Parameters.AddWithValue("@Telefono", UsuarioReq.TelefonoContacto);
+                    cmd.Parameters.AddWithValue("ContactoId", UsuarioReq.ContactoId);
                     cmd.Parameters.AddWithValue("@UsuarioCreacion", UsuarioReq.UsuarioCreacion);
                     cmd.ExecuteReader();
 

@@ -32,10 +32,12 @@ namespace PruebaMVM.DAL
             {
                 cnx.Open();
 
-                using (SqlCommand cmd = new SqlCommand("ConsultarCorrespondenciaes", cnx))
+                using (SqlCommand cmd = new SqlCommand("ConsultarCorrespondencias", cnx))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CorrespondenciaId", Id);
+                    cmd.Parameters.AddWithValue("@ContactoId", 0);
+                    cmd.Parameters.AddWithValue("@Estado", 0);
                     SqlDataReader rdr = cmd.ExecuteReader();
 
                     while (rdr.Read())
@@ -62,7 +64,48 @@ namespace PruebaMVM.DAL
         /// Obtiene las Correspondenciaes
         /// </summary>
         /// <returns>Correspondenciaes</returns>
-        public List<CorrespondenciaRes> ObtenerCorrespondenciaes()
+        public List<CorrespondenciaRes> ObtenerCorrespondenciaPorIdContacto(int Id)
+        {
+
+            List<CorrespondenciaRes> correspondencias = new List<CorrespondenciaRes>();
+
+            using (SqlConnection cnx = new SqlConnection(pruebaMVM))
+            {
+                cnx.Open();
+
+                using (SqlCommand cmd = new SqlCommand("ConsultarCorrespondencias", cnx))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CorrespondenciaId", 0);
+                    cmd.Parameters.AddWithValue("@ContactoId", Id); 
+                    cmd.Parameters.AddWithValue("@Estado", 1);
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        correspondencias.Add(new CorrespondenciaRes
+                        {
+                            CorrespondenciaId = Convert.ToInt32(rdr["CorrespondenciaId"]),
+                            TipoCorrespondencia = Convert.ToInt32(rdr["TipoCorrespondencia"]),
+                            Estado = Convert.ToString(rdr["Estado"]).Trim(),
+                            ContactoRemitente = Convert.ToString(rdr["Remitente"]).Trim(),
+                            ContactoDestinatario = Convert.ToString(rdr["Destinatario"]).Trim(),
+                        });
+                    }
+                    rdr.Close();
+
+                }
+                cnx.Close();
+            }
+
+            return correspondencias;
+        }
+
+        /// <summary>
+        /// Obtiene las Correspondenciaes
+        /// </summary>
+        /// <returns>Correspondenciaes</returns>
+        public List<CorrespondenciaRes> ObtenerCorrespondencias()
         {
 
             List<CorrespondenciaRes> Correspondenciaes = new List<CorrespondenciaRes>();
@@ -71,10 +114,12 @@ namespace PruebaMVM.DAL
             {
                 cnx.Open();
 
-                using (SqlCommand cmd = new SqlCommand("ConsultarCorrespondenciaes", cnx))
+                using (SqlCommand cmd = new SqlCommand("ConsultarCorrespondencias", cnx))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CorrespondenciaId", 0);
+                    cmd.Parameters.AddWithValue("@ContactoId", 0);
+                    cmd.Parameters.AddWithValue("@Estado", 0);
                     SqlDataReader rdr = cmd.ExecuteReader();
 
                     while (rdr.Read())

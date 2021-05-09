@@ -31,20 +31,20 @@ namespace PruebaMVM.Controllers
             ResponseModel responseModel = new ResponseModel();
             try
             {
-                responseModel.Message = "Datos Encontrados";
-                responseModel.Response = true;
-                responseModel.Data.Add("Contacto", contactoBLL.ObtenerContactoPorId(Id));
+                responseModel.Mensaje = "Datos Encontrados";
+                responseModel.Respuesta = true;
+                responseModel.Datos.Add("Contacto", contactoBLL.ObtenerContactoPorId(Id));
             }
             catch (MVMException exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(exc.CodigoError);
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(exc.CodigoError);
+                responseModel.Respuesta = false;
                 LogError.GuardarError(exc);
             }
             catch (Exception exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
+                responseModel.Respuesta = false;
                 MVMException pruebaExc = new MVMException(MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_EXCEPTION.ToString()), exc.GetType().ToString(), exc.Message, exc.StackTrace);
                 LogError.GuardarError(pruebaExc);
             }
@@ -63,20 +63,20 @@ namespace PruebaMVM.Controllers
             ResponseModel responseModel = new ResponseModel();
             try
             {
-                responseModel.Message = "Datos Encontrados";
-                responseModel.Response = true;
-                responseModel.Data.Add("Contacto", contactoBLL.ObtenerContactos());
+                responseModel.Mensaje = "Datos Encontrados";
+                responseModel.Respuesta = true;
+                responseModel.Datos.Add("Contacto", contactoBLL.ObtenerContactos());
             }
             catch (MVMException exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(exc.CodigoError);
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(exc.CodigoError);
+                responseModel.Respuesta = false;
                 LogError.GuardarError(exc);
             }
             catch (Exception exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
+                responseModel.Respuesta = false;
                 MVMException pruebaExc = new MVMException(MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_EXCEPTION.ToString()), exc.GetType().ToString(), exc.Message, exc.StackTrace);
                 LogError.GuardarError(pruebaExc);
             }
@@ -97,19 +97,19 @@ namespace PruebaMVM.Controllers
             try
             {
                 contactoBLL.GuardarContacto(contactoReq);
-                responseModel.Message = "Contacto guardado correctamente";
-                responseModel.Response = true;
+                responseModel.Mensaje = "Contacto guardado correctamente";
+                responseModel.Respuesta = true;
             }
             catch (MVMException exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(exc.CodigoError);
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(exc.CodigoError);
+                responseModel.Respuesta = false;
                 LogError.GuardarError(exc);
             }
             catch (Exception exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
+                responseModel.Respuesta = false;
                 MVMException pruebaExc = new MVMException(MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_EXCEPTION.ToString()), exc.GetType().ToString(), exc.Message, exc.StackTrace);
                 LogError.GuardarError(pruebaExc);
             }
@@ -129,19 +129,19 @@ namespace PruebaMVM.Controllers
             try
             {
                 contactoBLL.EditarContacto(contactoReq);
-                responseModel.Message = "Contacto editado correctamente";
-                responseModel.Response = true;
+                responseModel.Mensaje = "Contacto editado correctamente";
+                responseModel.Respuesta = true;
             }
             catch (MVMException exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(exc.CodigoError);
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(exc.CodigoError);
+                responseModel.Respuesta = false;
                 LogError.GuardarError(exc);
             }
             catch (Exception exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
+                responseModel.Respuesta = false;
                 MVMException pruebaExc = new MVMException(MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_EXCEPTION.ToString()), exc.GetType().ToString(), exc.Message, exc.StackTrace);
                 LogError.GuardarError(pruebaExc);
             }
@@ -161,19 +161,19 @@ namespace PruebaMVM.Controllers
             try
             {
                 contactoBLL.EliminarContacto(contactoReq);
-                responseModel.Message = "Contacto eliminado correctamente";
-                responseModel.Response = true;
+                responseModel.Mensaje = "Contacto eliminado correctamente";
+                responseModel.Respuesta = true;
             }
             catch (MVMException exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(exc.CodigoError);
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(exc.CodigoError);
+                responseModel.Respuesta = false;
                 LogError.GuardarError(exc);
             }
             catch (Exception exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
+                responseModel.Respuesta = false;
                 MVMException pruebaExc = new MVMException(MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_EXCEPTION.ToString()), exc.GetType().ToString(), exc.Message, exc.StackTrace);
                 LogError.GuardarError(pruebaExc);
             }

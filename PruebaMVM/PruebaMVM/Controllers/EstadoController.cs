@@ -29,20 +29,20 @@ namespace PruebaMVM.Controllers
             ResponseModel responseModel = new ResponseModel();
             try
             {
-                responseModel.Message = "Datos Encontrados";
-                responseModel.Response = true;
-                responseModel.Data.Add("Estados", estadoBLL.ObtenerEstados());
+                responseModel.Mensaje = "Datos Encontrados";
+                responseModel.Respuesta = true;
+                responseModel.Datos.Add("Estados", estadoBLL.ObtenerEstados());
             }
             catch (MVMException exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(exc.CodigoError);
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(exc.CodigoError);
+                responseModel.Respuesta = false;
                 LogError.GuardarError(exc);
             }
             catch (Exception exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
+                responseModel.Respuesta = false;
                 MVMException pruebaExc = new MVMException(MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_EXCEPTION.ToString()), exc.GetType().ToString(), exc.Message, exc.StackTrace);
                 LogError.GuardarError(pruebaExc);
             }

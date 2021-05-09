@@ -46,9 +46,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.9\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PruebaMVM.Utilities">
+      <HintPath>..\packages\PruebaUtilities\PruebaMVM.Utilities.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -155,11 +164,32 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ContactoController.cs" />
+    <Compile Include="Controllers\CorrespondenciaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LlamarServicios\ServiciosCorrespondencia.cs" />
+    <Compile Include="LlamarServicios\ServiciosUsuario.cs" />
+    <Compile Include="Models\CiudadDTO\CiudadReq.cs" />
+    <Compile Include="Models\CiudadDTO\CiudadRes.cs" />
+    <Compile Include="Models\ComunicacionDTO\CorrespondenciaReq.cs" />
+    <Compile Include="Models\ComunicacionDTO\CorrespondenciaRes.cs" />
+    <Compile Include="Models\ContactoDTO\ContactoReq.cs" />
+    <Compile Include="Models\ContactoDTO\ContactoRes.cs" />
+    <Compile Include="Models\DepartamentoDTO\DepartamentoReq.cs" />
+    <Compile Include="Models\DepartamentoDTO\DepartamentoRes.cs" />
+    <Compile Include="Models\EstadoDTO\EstadoReq.cs" />
+    <Compile Include="Models\EstadoDTO\EstadoRes.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RolDTO\RolReq.cs" />
+    <Compile Include="Models\RolDTO\RolRes.cs" />
+    <Compile Include="Models\TipoCorrespondenciaDTO\TipoCorrespondenciaReq.cs" />
+    <Compile Include="Models\TipoCorrespondenciaDTO\TipoCorrespondenciaRes.cs" />
+    <Compile Include="Models\UsuarioDTO\UsuarioReq.cs" />
+    <Compile Include="Models\UsuarioDTO\UsuarioRes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -192,7 +222,11 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="NLog.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\JavaScript\Contacto.js" />
+    <Content Include="Scripts\JavaScript\Correspondencia.js" />
+    <Content Include="Scripts\JavaScript\Usuario.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -212,10 +246,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Correspondencia\Correspondencia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Contacto\" />
+    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

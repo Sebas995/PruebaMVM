@@ -19,7 +19,42 @@ namespace PruebaMVM.Controllers
     {
         UsuarioBLL usuarioBLL = new UsuarioBLL();
 
-         /// <summary>
+        /// <summary>
+        /// Iniciar Sesion del usuario
+        /// </summary>
+        /// <param name="UsuarioReq">Correo y contraseña
+        /// <returns>Usuario</returns>
+        [HttpPost]
+        [Route("Api/IniciarSesion")]
+        public ResponseModel IniciarSesion(UsuarioReq UsuarioReq)
+        {
+            ResponseModel responseModel = new ResponseModel();
+            string Mensaje = String.Empty;
+            bool Respuesta = true;
+            try
+            {
+                responseModel.Datos.Add("Usuario", usuarioBLL.IniciarSesion(UsuarioReq, ref Mensaje, ref Respuesta));
+                responseModel.Mensaje = Mensaje;
+                responseModel.Respuesta = Respuesta;
+            }
+            catch (MVMException exc)
+            {
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(exc.CodigoError);
+                responseModel.Respuesta = false;
+                LogError.GuardarError(exc);
+            }
+            catch (Exception exc)
+            {
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
+                responseModel.Respuesta = false;
+                MVMException pruebaExc = new MVMException(MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_EXCEPTION.ToString()), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+                LogError.GuardarError(pruebaExc);
+            }
+
+            return responseModel;
+        }
+
+        /// <summary>
         /// Obtiene los Usuarios por Id
         /// </summary>
         /// <param name="Id">Id del Usuario</param>
@@ -31,20 +66,20 @@ namespace PruebaMVM.Controllers
             ResponseModel responseModel = new ResponseModel();
             try
             {
-                responseModel.Message = "Datos Encontrados";
-                responseModel.Response = true;
-                responseModel.Data.Add("Usuario", usuarioBLL.ObtenerUsuarioPorId(Id));
+                responseModel.Mensaje = "Datos Encontrados";
+                responseModel.Respuesta = true;
+                responseModel.Datos.Add("Usuario", usuarioBLL.ObtenerUsuarioPorId(Id));
             }
             catch (MVMException exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(exc.CodigoError);
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(exc.CodigoError);
+                responseModel.Respuesta = false;
                 LogError.GuardarError(exc);
             }
             catch (Exception exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
+                responseModel.Respuesta = false;
                 MVMException pruebaExc = new MVMException(MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_EXCEPTION.ToString()), exc.GetType().ToString(), exc.Message, exc.StackTrace);
                 LogError.GuardarError(pruebaExc);
             }
@@ -63,20 +98,20 @@ namespace PruebaMVM.Controllers
             ResponseModel responseModel = new ResponseModel();
             try
             {
-                responseModel.Message = "Datos Encontrados";
-                responseModel.Response = true;
-                responseModel.Data.Add("Usuario", usuarioBLL.ObtenerUsuarios());
+                responseModel.Mensaje = "Datos Encontrados";
+                responseModel.Respuesta = true;
+                responseModel.Datos.Add("Usuario", usuarioBLL.ObtenerUsuarios());
             }
             catch (MVMException exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(exc.CodigoError);
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(exc.CodigoError);
+                responseModel.Respuesta = false;
                 LogError.GuardarError(exc);
             }
             catch (Exception exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
+                responseModel.Respuesta = false;
                 MVMException pruebaExc = new MVMException(MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_EXCEPTION.ToString()), exc.GetType().ToString(), exc.Message, exc.StackTrace);
                 LogError.GuardarError(pruebaExc);
             }
@@ -97,19 +132,19 @@ namespace PruebaMVM.Controllers
             try
             {
                 usuarioBLL.GuardarUsuario(UsuarioReq);
-                responseModel.Message = "Usuario guardado correctamente";
-                responseModel.Response = true;
+                responseModel.Mensaje = "Usuario guardado correctamente";
+                responseModel.Respuesta = true;
             }
             catch (MVMException exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(exc.CodigoError);
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(exc.CodigoError);
+                responseModel.Respuesta = false;
                 LogError.GuardarError(exc);
             }
             catch (Exception exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
+                responseModel.Respuesta = false;
                 MVMException pruebaExc = new MVMException(MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_EXCEPTION.ToString()), exc.GetType().ToString(), exc.Message, exc.StackTrace);
                 LogError.GuardarError(pruebaExc);
             }
@@ -129,19 +164,19 @@ namespace PruebaMVM.Controllers
             try
             {
                 usuarioBLL.EditarUsuario(UsuarioReq);
-                responseModel.Message = "Usuario editado correctamente";
-                responseModel.Response = true;
+                responseModel.Mensaje = "Usuario editado correctamente";
+                responseModel.Respuesta = true;
             }
             catch (MVMException exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(exc.CodigoError);
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(exc.CodigoError);
+                responseModel.Respuesta = false;
                 LogError.GuardarError(exc);
             }
             catch (Exception exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
+                responseModel.Respuesta = false;
                 MVMException pruebaExc = new MVMException(MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_EXCEPTION.ToString()), exc.GetType().ToString(), exc.Message, exc.StackTrace);
                 LogError.GuardarError(pruebaExc);
             }
@@ -161,19 +196,19 @@ namespace PruebaMVM.Controllers
             try
             {
                 usuarioBLL.EliminarUsuario(UsuarioReq);
-                responseModel.Message = "Usuario eliminado correctamente";
-                responseModel.Response = true;
+                responseModel.Mensaje = "Usuario eliminado correctamente";
+                responseModel.Respuesta = true;
             }
             catch (MVMException exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(exc.CodigoError);
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(exc.CodigoError);
+                responseModel.Respuesta = false;
                 LogError.GuardarError(exc);
             }
             catch (Exception exc)
             {
-                responseModel.Message = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
-                responseModel.Response = false;
+                responseModel.Mensaje = MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_USER.ToString());
+                responseModel.Respuesta = false;
                 MVMException pruebaExc = new MVMException(MensajeUtil.ObtenerMensaje(EnumMensajes.ERROR_EXCEPTION.ToString()), exc.GetType().ToString(), exc.Message, exc.StackTrace);
                 LogError.GuardarError(pruebaExc);
             }

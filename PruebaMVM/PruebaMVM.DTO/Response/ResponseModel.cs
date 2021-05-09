@@ -12,20 +12,20 @@ namespace PruebaMVM.DTO.Response
     {
         public ResponseModel()
         {
-            Data = new Dictionary<string, object>();
+            Datos = new Dictionary<string, object>();
         }
 
         /// <summary>
         /// Message of response
         /// </summary>
-        public string Message { get; set; } 
+        public string Mensaje { get; set; } 
         /// <summary>
         /// Response (true or false)
         /// </summary>
-        public bool Response { get; set; } 
+        public bool Respuesta { get; set; } 
         /// <summary>
         /// Data Response
         /// </summary>
-        public Dictionary<string, object> Data { get; set; } 
+        public Dictionary<string, object> Datos { get; set; } 
     }
 }

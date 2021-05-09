@@ -57,15 +57,50 @@ namespace PruebaMVM.BLL
         }
 
         /// <summary>
-        /// Obtiene las Correspondenciaes
+        /// Obtiene las Correspondencias por Id Contacto
         /// </summary>
         /// <returns>Correspondenciaes</returns>
-        public List<CorrespondenciaRes> ObtenerCorrespondenciaes()
+        public List<CorrespondenciaRes> ObtenerCorrespondenciaPorIdContacto(int Id)
         {
             List<CorrespondenciaRes> Correspondenciaes = new List<CorrespondenciaRes>();
             try
             {
-                Correspondenciaes = CorrespondenciaDAL.ObtenerCorrespondenciaes();
+                Correspondenciaes = CorrespondenciaDAL.ObtenerCorrespondenciaPorIdContacto(Id);
+            }
+            catch (DataException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_DATABASE.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (ArgumentException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_ARGUMENT.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (NullReferenceException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_NULLREFERENCE.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (TimeoutException exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_TIMEOUT.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+            catch (Exception exc)
+            {
+                throw new MVMException(EnumMensajes.ERROR_EXCEPTION.ToString(), exc.GetType().ToString(), exc.Message, exc.StackTrace);
+            }
+
+            return Correspondenciaes;
+        }
+
+        /// <summary>
+        /// Obtiene las Correspondenciaes
+        /// </summary>
+        /// <returns>Correspondenciaes</returns>
+        public List<CorrespondenciaRes> ObtenerCorrespondencias()
+        {
+            List<CorrespondenciaRes> Correspondenciaes = new List<CorrespondenciaRes>();
+            try
+            {
+                Correspondenciaes = CorrespondenciaDAL.ObtenerCorrespondencias();
             }
             catch (DataException exc)
             {
