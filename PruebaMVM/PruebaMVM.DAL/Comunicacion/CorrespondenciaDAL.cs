@@ -173,6 +173,7 @@ namespace PruebaMVM.DAL
                             CorrespondenciaId = Convert.ToInt32(rdr["CorrespondenciaId"]),
                             TipoCorrespondencia = Convert.ToInt32(rdr["TipoCorrespondencia"]),
                             Estado = Convert.ToString(rdr["Estado"]).Trim(),
+                            NumeroRadicado = Convert.ToString(rdr["Radicado"]).Trim(),
                             ContactoRemitente = Convert.ToString(rdr["Remitente"]).Trim(),
                             ContactoDestinatario = Convert.ToString(rdr["Destinatario"]).Trim(),
                         };

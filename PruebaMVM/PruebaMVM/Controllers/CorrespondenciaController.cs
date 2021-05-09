@@ -194,7 +194,7 @@ namespace PruebaMVM.Controllers
             try
             {
                 CorrespondenciaBLL.EliminarCorrespondencia(CorrespondenciaReq);
-                responseModel.Mensaje = "Comunicación eliminada correctamente";
+                responseModel.Mensaje = "Comunicación eliminada ";
                 responseModel.Respuesta = true;
             }
             catch (MVMException exc)
